@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$font-main: 'Roboto';
+$fs-medium: 15px;
+
+$primary-color: #19CA94;
+$secondary-color: #FFF;
+$tertiary-color: #8BC34A;
+$quarternary-color: #FFC107;
+$quinary-color: #6B66D5;
+
+$background-color: #4844A3;
+$hover-color: #12A578;
+
+$window-padding: 15px;
+
+$component-gap: 15px;
+$component-padding: 15px;
+
+$box-padding: 15px;
+$box-gap: 15px;
+$box-radius: 8px;
+
+$button-padding: 25px;
+$button-radius: 20px;
+
+@mixin box-side-padding {
+    padding-left: $box-padding;
+    padding-right: $box-padding;
+}
+
+@mixin box-vertical-padding {
+    padding-top: $box-padding;
+    padding-bottom: $box-padding;
+}
+
+@mixin button-side-padding {
+    padding-left: $button-padding;
+    padding-right: $button-padding;
+}
+
+@mixin box {
+    @include box-vertical-padding;
+    @include box-side-padding;
+}
+
+@mixin input {
+    @include box-side-padding;
+    border-radius: $button-radius;
+    font-size: $fs-medium;
+    border: none;
+}
+
+@mixin radius($radius) {
+    border-radius:$radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin button($type:false) {
+    @include button-side-padding;
+    @include radius($button-radius);
+    height: 37px;
+    @if $type == 'primary' {
+        background: $primary-color;
+    } @else {
+        background: $quinary-color;
+    }
+    color: $secondary-color;
+    font-size: $fs-medium;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        @if $type == 'primary' {
+            background: $hover-color;
+        } @else {
+            background: $background-color;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@import '../settings.scss';
+
+.item-box {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    grid-row-gap: 15px;
+}
+
+.search-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $box-gap;
+}
+
+.items {
+    ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: $box-gap;
+    }
+
+    li {
+        @include box-side-padding;
+        @include box-vertical-padding;
+        list-style: none;
+        background: $secondary-color;
+        border-top: solid 5px $quarternary-color;
+        border-radius: $box-radius;
+
+        button:first-of-type {
+             margin-right: $box-padding;
+        }
+    }
+}

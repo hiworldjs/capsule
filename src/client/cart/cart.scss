@@ -1,0 +1,51 @@
+@import '../settings.scss';
+
+.cart {
+    height: calc(100vh - 110px);
+    display: grid;
+    grid-template-rows: 60px 1fr 60px;
+
+    .cart-title {
+        background: $primary-color;
+        color: $secondary-color;
+        text-align: center;
+        border-top-left-radius: $box-radius;
+        border-top-right-radius: $box-radius;
+
+        h2 {
+            font-size: 18px;
+            padding-top: 4px;
+        }
+    }
+
+    .cart-items {
+        @include box;
+        background: $secondary-color;
+        overflow-y: scroll;
+
+        li {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-bottom: $box-padding;
+
+            h4, p {
+                margin: 0;
+            }
+        }
+    }
+
+    .total-price {
+        @include box;
+        background: $secondary-color;
+        border-top: solid 1px $primary-color;
+        border-bottom-left-radius: $box-radius;
+        border-bottom-right-radius: $box-radius;
+
+        h2 {
+            font-size: 18px;
+            padding-top: 6px;
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+@import '../settings.scss';
+
+.header {
+    h1 {
+        color: $secondary-color;
+        margin: 0;
+        font-size: 22px;
+    }
+}

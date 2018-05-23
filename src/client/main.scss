@@ -1,0 +1,47 @@
+@import './settings.scss';
+
+body {
+    font-family: $font-main;
+    font-size: $fs-medium;
+    background: $background-color;
+    padding: $window-padding;
+}
+
+ul {
+    padding: 0;
+}
+
+input {
+    @include input;
+    height: 34px;
+}
+
+button {
+    @include button;
+}
+
+button.primary-button {
+    @include button('primary');
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 65px 1fr;
+    grid-gap: $component-gap;
+
+    .header {
+        grid-column: 1/6;
+        grid-row: 1;
+    }
+
+    .item-box {
+        grid-column: 1/4;
+        grid-row: 2;
+    }
+
+    .cart {
+        grid-column: 4/6;
+        grid-row: 2;
+    }
+}

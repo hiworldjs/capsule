@@ -1,9 +1,26 @@
 @import '../settings.scss';
 
 .header {
+    display: flex;
+    align-items: center;
+
+    .logo {
+        @include svg-button(60px, url(icons/logo.svg));
+        padding-right: $box-padding;
+
+    }
+
     h1 {
-        color: $secondary-color;
+        display: inline-block;
+        color: $secondary-font-color;
         margin: 0;
         font-size: 22px;
+    }
+
+    .update-button {
+        @include svg-button(40px, url(icons/bank.svg));
+        position: absolute;
+        top: $box-padding + 5px;
+        right: $box-padding + 5px;
     }
 }

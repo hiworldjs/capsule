@@ -5,6 +5,7 @@ body {
     font-size: $fs-medium;
     background: $background-color;
     padding: $window-padding;
+    color: $font-color;
 }
 
 ul {
@@ -16,19 +17,37 @@ input {
     height: 34px;
 }
 
-button {
+.button {
     @include button;
 }
 
-button.primary-button {
-    @include button('primary');
+.primary-button {
+    @include button;
+    background: $primary-color;
+    &:hover {
+        background: $primary-hover-color;
+    }
+}
+
+.flash-button {
+    @include button;
+    background: linear-gradient(to top, #50cc7f 0%, #f5d100 100%);
+    &:hover {
+        background: linear-gradient(to bottom, #50cc7f 0%, #f5d100 100%);
+    }
+}
+
+h2 {
+    font-size: $fs-title;
+    margin: 0;
+    padding-top: 4px;
 }
 
 .main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 65px 1fr;
-    grid-gap: $component-gap;
+    grid-gap: $box-gap;
 
     .header {
         grid-column: 1/6;
@@ -44,4 +63,8 @@ button.primary-button {
         grid-column: 4/6;
         grid-row: 2;
     }
+}
+
+.overlay {
+    @include overlay;
 }

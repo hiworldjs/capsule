@@ -6,21 +6,12 @@
     grid-template-rows: 60px 1fr 60px;
 
     .cart-title {
-        background: $primary-color;
-        color: $secondary-color;
-        text-align: center;
-        border-top-left-radius: $box-radius;
-        border-top-right-radius: $box-radius;
-
-        h2 {
-            font-size: 18px;
-            padding-top: 4px;
-        }
+        @include title-header;
     }
 
     .cart-items {
         @include box;
-        background: $secondary-color;
+        background: $secondary-background-color;
         overflow-y: scroll;
 
         li {
@@ -37,7 +28,7 @@
 
     .total-price {
         @include box;
-        background: $secondary-color;
+        background: $secondary-background-color;
         border-top: solid 1px $primary-color;
         border-bottom-left-radius: $box-radius;
         border-bottom-right-radius: $box-radius;

@@ -6,8 +6,11 @@ import store from './store';
 import Header from './header/header';
 import ItemBox from './item-box/item-box';
 import Cart from './cart/cart';
+import AddItem from './crud-item/add-item';
 
 import styles from './main.scss';
+
+window.store = store;
 
 class App extends React.Component {
     render() {
@@ -17,6 +20,7 @@ class App extends React.Component {
                     <Header />
                     <ItemBox />
                     <Cart />
+                    <AddItem />
                 </div>
             </Provider>
         )

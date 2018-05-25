@@ -1,0 +1,63 @@
+@import '../settings.scss';
+
+.add-item {
+    .add-item-title {
+        @include title-header;
+
+        .close-button {
+            @include svg-button(20px, url(icons/close.svg));
+            position: absolute;
+            right: $box-padding;
+            top: $box-padding;
+        }
+    }
+
+    .add-item-content {
+        @include radius($box-radius);
+        background: $secondary-background-color;
+
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        form {
+            @include box;
+            display: grid;
+            grid-template-columns: 1fr 1fr 50px;
+            grid-gap: $box-gap;
+            align-items: center;
+        }
+    }
+
+    div#gold-age {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: $box-gap;
+    }
+
+    .gold-age-radio {
+
+        input {
+            display: none;
+
+            &:checked + label {
+                background: $primary-color;
+                color: $secondary-font-color;
+            }
+        }
+
+        label {
+            border-radius: $button-radius;
+            display: inline-block;
+            padding: 0;
+            border: solid 1px $primary-color;
+            cursor: pointer;
+            white-space: nowrap;
+            width: 100px;
+            height: 18px;
+            padding-top: 7px;
+            text-align: center;
+        }
+    }
+}

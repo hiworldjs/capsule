@@ -2,27 +2,37 @@
 
 $font-main: 'Roboto';
 $fs-medium: 15px;
+$fs-title: 18px;
 
-$primary-color: #19CA94;
-$secondary-color: #FFF;
-$tertiary-color: #8BC34A;
-$quarternary-color: #FFC107;
-$quinary-color: #6B66D5;
+$font-color: #000;
+$secondary-font-color: #FFF;
 
 $background-color: #4844A3;
-$hover-color: #12A578;
+$secondary-background-color: #FFF;
+
+$primary-color: #2ecc71;
+$primary-hover-color: #27ae60;
+
+$secondary-color: #af71aa;
+$secondary-hover-color: #9c6497;
+
+$decoration-color: #f1c40f;
+$header-color: #2ecc71;
+
+$overlay-color: #000;
 
 $window-padding: 15px;
 
-$component-gap: 15px;
-$component-padding: 15px;
-
-$box-padding: 15px;
+$box-padding: 20px;
 $box-gap: 15px;
 $box-radius: 8px;
 
 $button-padding: 25px;
 $button-radius: 20px;
+
+// Animation
+$transition-speed: .2s;
+$enlarge-scale: 1.2;
 
 @mixin box-side-padding {
     padding-left: $box-padding;
@@ -31,7 +41,7 @@ $button-radius: 20px;
 
 @mixin box-vertical-padding {
     padding-top: $box-padding;
-    padding-bottom: $box-padding;
+    padding-bottom: $box-padding + 5px;
 }
 
 @mixin button-side-padding {
@@ -48,7 +58,7 @@ $button-radius: 20px;
     @include box-side-padding;
     border-radius: $button-radius;
     font-size: $fs-medium;
-    border: none;
+    border: solid 1px $primary-color;
 }
 
 @mixin radius($radius) {
@@ -61,25 +71,53 @@ $button-radius: 20px;
     border-radius: $radius;
 }
 
-@mixin button($type:false) {
+@mixin button($type:false, $height: 37px) {
     @include button-side-padding;
     @include radius($button-radius);
-    height: 37px;
-    @if $type == 'primary' {
-        background: $primary-color;
-    } @else {
-        background: $quinary-color;
-    }
-    color: $secondary-color;
-    font-size: $fs-medium;
+    height: $height;
+    color: $secondary-font-color;
     border: none;
+    color: $secondary-font-color;
+    font-size: $fs-medium;
     cursor: pointer;
+    background: $secondary-color;
 
     &:hover {
-        @if $type == 'primary' {
-            background: $hover-color;
-        } @else {
-            background: $background-color;
-        }
+        background: $secondary-hover-color;
+    }
+}
+
+@mixin overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $overlay-color;
+    opacity: 0.7;
+}
+
+@mixin title-header {
+    @include box-vertical-padding;
+    background: $header-color;
+    color: $secondary-font-color;
+    text-align: center;
+    border-top-left-radius: $box-radius;
+    border-top-right-radius: $box-radius;
+}
+
+@mixin svg-button($size, $icon-url) {
+    width: $size;
+    height: $size;
+    background: $icon-url;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $size;
+    border: none;
+    cursor: pointer;
+    transition: all $transition-speed ease-in-out;
+
+    &:hover {
+        transform: scale($enlarge-scale);
     }
 }

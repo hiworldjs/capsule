@@ -6,8 +6,8 @@ import styles from './cart.scss';
 import lang from '../resources/lang';
 
 const mapStateToProps = state => ({
-    selectedItems: state.selectedItems,
-    total: state.total
+    selectedItems: state.itemBox.selectedItems,
+    total: state.itemBox.total
 })
 
 class ConnectedCart extends React.Component {

@@ -7,7 +7,7 @@ import lang from '../resources/lang';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
-    showedItems: state.showedItems
+    showedItems: state.itemBox.showedItems
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -39,9 +39,16 @@ class ConnectedItems extends React.Component {
                     <h4>{ item.name }</h4>
                     <h5>{ item.code }</h5>
                     <p>{ lang.goldAge }: { item.age }</p>
-                    <p>{ lang.price }: { item.price } { lang.currency }</p>
+                    <p>{ lang. goldWeight }: { item.goldWeight } { lang.weightUnit }</p>
+                    <p>{ lang.goldPrice }: { item.price - item.laborPrice - item.originalLaborPrice }</p>
+                    <p>{ lang.originalLaborPrice }: { item.originalLaborPrice } { lang.currency }</p>
+                    <p>
+                        { lang.laborPrice }: { +item.laborPrice + +item.originalLaborPrice } { lang.currency }
+                        <button className="edit-button" title={ lang.addLaborPrice }></button>
+                    </p>
+
+                    <p><b>{ lang.price }: { item.price } { lang.currency }</b></p>
                     <button className="primary-button" onClick={ this.handleClick } value={ item.code }>{ lang.select }</button>
-                    <button>{ lang.addCost }</button>
                 </li>
             )
         }

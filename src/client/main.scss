@@ -24,17 +24,6 @@ input {
 .primary-button {
     @include button;
     background: $primary-color;
-    &:hover {
-        background: $primary-hover-color;
-    }
-}
-
-.flash-button {
-    @include button;
-    background: linear-gradient(to top, #50cc7f 0%, #f5d100 100%);
-    &:hover {
-        background: linear-gradient(to bottom, #50cc7f 0%, #f5d100 100%);
-    }
 }
 
 h2 {

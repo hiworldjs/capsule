@@ -12,6 +12,7 @@
   "author": "Harry Le",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.246.1",
     "express": "^4.16.3",
     "nodemon": "^1.17.4"
   },

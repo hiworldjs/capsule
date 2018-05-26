@@ -4,6 +4,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('dist'));
 
+const AWS = require('aws-sdk');
+AWS.config.update({region: 'eu-central-1'});
+
 var path = require('path');
 var port = process.env.PORT || 3000;
 
@@ -21,6 +24,51 @@ var randomize = (items) => {
     }
     return items;
 }
+
+app.get('/createTable', (req, res) => {
+    // Create the DynamoDB service object
+    ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
+
+    var params = {
+      AttributeDefinitions: [
+        {
+            AttributeName: 'NAME',
+            AttributeType: 'S'
+        },
+        {
+            AttributeName: 'PRICE',
+            AttributeType: 'N'
+        }
+      ],
+      KeySchema: [
+        {
+            AttributeName: 'ID',
+            KeyType: 'HASH'
+        },
+          {
+              AttributeName: 'CODE',
+              KeyType: 'RANGE'
+          },
+      ],
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 1,
+        WriteCapacityUnits: 1
+      },
+      TableName: 'GOLD_AGE',
+      StreamSpecification: {
+        StreamEnabled: false
+      }
+    };
+
+    // Call DynamoDB to create the table
+    ddb.createTable(params, function(err, data) {
+      if (err) {
+        console.log("Error", err);
+      } else {
+        console.log("Success", data);
+      }
+    });
+});
 
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname + '/src/client/index.html'));

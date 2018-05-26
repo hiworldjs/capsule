@@ -36,8 +36,10 @@ class ConnectedItems extends React.Component {
         for (var item of this.props.showedItems) {
             itemList.push(
                 <li key={ item.code }>
-                    <h4>{ item.name }</h4>
-                    <h5>{ item.code }</h5>
+                    <div className="item-title">
+                        <h3>{ item.name }</h3>
+                        <span>{ item.code }</span>
+                    </div>
                     <p>{ lang.goldAge }: { item.age }</p>
                     <p>{ lang. goldWeight }: { item.goldWeight } { lang.weightUnit }</p>
                     <p>{ lang.goldPrice }: { item.price - item.laborPrice - item.originalLaborPrice }</p>

@@ -49,6 +49,10 @@ $enlarge-scale: 1.2;
     padding-right: $button-padding;
 }
 
+@mixin hover-effect {
+    opacity: 0.8;
+}
+
 @mixin box {
     @include box-vertical-padding;
     @include box-side-padding;
@@ -81,9 +85,26 @@ $enlarge-scale: 1.2;
     font-size: $fs-medium;
     cursor: pointer;
     background: $secondary-color;
+    transition: opacity $transition-speed ease-in;
 
     &:hover {
-        background: $secondary-hover-color;
+        @include hover-effect
+    }
+}
+
+@mixin svg-button($size, $icon-url) {
+    width: $size;
+    height: $size;
+    background: $icon-url;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $size;
+    border: none;
+    cursor: pointer;
+    transition: opacity $transition-speed ease-in;
+
+    &:hover {
+        @include hover-effect;
     }
 }
 
@@ -104,20 +125,4 @@ $enlarge-scale: 1.2;
     text-align: center;
     border-top-left-radius: $box-radius;
     border-top-right-radius: $box-radius;
-}
-
-@mixin svg-button($size, $icon-url) {
-    width: $size;
-    height: $size;
-    background: $icon-url;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: $size;
-    border: none;
-    cursor: pointer;
-    transition: all $transition-speed ease-in-out;
-
-    &:hover {
-        transform: scale($enlarge-scale);
-    }
 }

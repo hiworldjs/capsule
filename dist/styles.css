@@ -15,10 +15,10 @@
     background-size: 60px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in;
     padding-right: 20px; }
     .header .logo:hover {
-      transform: scale(1.2); }
+      opacity: 0.8; }
   .header h1 {
     display: inline-block;
     color: #FFF;
@@ -33,16 +33,16 @@
     background-size: 40px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in;
     position: absolute;
     top: 25px;
     right: 25px; }
     .header .update-button:hover {
-      transform: scale(1.2); }
+      opacity: 0.8; }
 
 .item-box {
   display: grid;
-  grid-template-rows: 38px 1fr;
+  grid-template-rows: 45px 1fr;
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 15px;
   grid-column-gap: 15px; }
@@ -58,21 +58,20 @@
   grid-template-columns: 1fr; }
 
 .main-board {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 15px; }
+  display: flex;
+  flex-direction: row-reverse; }
   .main-board .add-button {
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 45px;
     background: url(icons/add.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 38px;
+    background-size: 45px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out; }
+    transition: opacity 0.2s ease-in; }
     .main-board .add-button:hover {
-      transform: scale(1.2); }
+      opacity: 0.8; }
 
 .items ul {
   display: grid;
@@ -97,10 +96,19 @@
     background-size: 20px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    margin-left: 15px; }
+    transition: opacity 0.2s ease-in;
+    text-align: right; }
     .items li .edit-button:hover {
-      transform: scale(1.2); }
+      opacity: 0.8; }
+  .items li .item-title {
+    display: grid;
+    grid-template-columns: 1fr 50px; }
+    .items li .item-title h3 {
+      margin: 0;
+      font-size: 17px; }
+    .items li .item-title span {
+      text-align: right;
+      color: #2ecc71; }
 
 .cart {
   height: calc(100vh - 110px);
@@ -803,12 +811,12 @@
     background-size: 20px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in;
     position: absolute;
     right: 20px;
     top: 20px; }
     .add-item .add-item-title .close-button:hover {
-      transform: scale(1.2); }
+      opacity: 0.8; }
 
 .add-item .add-item-content {
   border-radius: 8px;
@@ -840,6 +848,8 @@
 
 .add-item .gold-age-radio input {
   display: none; }
+  .add-item .gold-age-radio input:hover + label {
+    opacity: 0.8; }
   .add-item .gold-age-radio input:checked + label {
     background: #2ecc71;
     color: #FFF; }
@@ -847,13 +857,12 @@
 .add-item .gold-age-radio label {
   border-radius: 20px;
   display: inline-block;
-  padding: 0;
+  padding: 5px 0;
   border: solid 1px #2ecc71;
   cursor: pointer;
   white-space: nowrap;
   width: 100px;
   height: 18px;
-  padding-top: 7px;
   text-align: center; }
 
 body {
@@ -890,9 +899,10 @@ input {
   color: #FFF;
   font-size: 15px;
   cursor: pointer;
-  background: #af71aa; }
+  background: #af71aa;
+  transition: opacity 0.2s ease-in; }
   .button:hover {
-    background: #9c6497; }
+    opacity: 0.8; }
 
 .primary-button {
   padding-left: 25px;
@@ -911,34 +921,10 @@ input {
   font-size: 15px;
   cursor: pointer;
   background: #af71aa;
+  transition: opacity 0.2s ease-in;
   background: #2ecc71; }
   .primary-button:hover {
-    background: #9c6497; }
-  .primary-button:hover {
-    background: #27ae60; }
-
-.flash-button {
-  padding-left: 25px;
-  padding-right: 25px;
-  border-radius: 20px;
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-  -khtml-border-radius: 20px;
-  border-radius: 20px;
-  height: 37px;
-  color: #FFF;
-  border: none;
-  color: #FFF;
-  font-size: 15px;
-  cursor: pointer;
-  background: #af71aa;
-  background: linear-gradient(to top, #50cc7f 0%, #f5d100 100%); }
-  .flash-button:hover {
-    background: #9c6497; }
-  .flash-button:hover {
-    background: linear-gradient(to bottom, #50cc7f 0%, #f5d100 100%); }
+    opacity: 0.8; }
 
 h2 {
   font-size: 18px;

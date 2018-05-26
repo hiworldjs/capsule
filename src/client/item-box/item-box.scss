@@ -1,6 +1,6 @@
 @import '../settings.scss';
 
-$heading-bar-height: 38px;
+$heading-bar-height: 45px;
 
 .item-box {
     display: grid;
@@ -26,9 +26,8 @@ $heading-bar-height: 38px;
 }
 
 .main-board {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: $box-gap;
+    display: flex;
+    flex-direction: row-reverse;
 
     .add-button {
         @include svg-button($heading-bar-height, url(icons/add.svg));
@@ -50,9 +49,26 @@ $heading-bar-height: 38px;
         border-top: solid 5px $decoration-color;
         border-radius: $box-radius;
 
+        
+
         .edit-button {
             @include svg-button(20px, url(icons/edit.svg));
-            margin-left: $box-gap;
+            text-align: right;
+        }
+
+        .item-title {
+            display: grid;
+            grid-template-columns: 1fr 50px;
+
+            h3 {
+                margin: 0;
+                font-size: 17px;
+            }
+
+            span {
+                text-align: right;
+                color: $primary-color;
+            }
         }
     }
 }

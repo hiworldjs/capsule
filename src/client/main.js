@@ -7,6 +7,7 @@ import Header from './header/header';
 import ItemBox from './item-box/item-box';
 import Cart from './cart/cart';
 import AddItem from './crud-item/add-item';
+import GoldAge from './gold-age/gold-age';
 import Alert from './alert/alert';
 
 import styles from './main.scss';
@@ -22,6 +23,7 @@ class App extends React.Component {
                     <ItemBox />
                     <Cart />
                     <AddItem />
+                    <GoldAge />
                     <Alert />
                 </div>
             </Provider>

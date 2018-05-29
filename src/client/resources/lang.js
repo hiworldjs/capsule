@@ -12,8 +12,9 @@ const lang = {
     alert: "Thông Báo",
 
     itemName: "Tên Sản Phẩm",
-    itemCode: "Mã Sản Phẩm",
     name: "Tên",
+    itemCode: "Mã Sản Phẩm",
+    code: "Mã",
     goldAge: "Tuổi Vàng",
     age: "Tuổi",
     itemWeight: "Trọng Lượng Sản Phẩm",
@@ -23,6 +24,7 @@ const lang = {
     price: "Giá",
     goldPrice: "Giá Vàng",
     buyGoldPrice: "Giá Vàng Mua Vào",
+    total: "Tổng",
 
     buyPrice: "Giá Mua Vào",
     buyDate: "Ngày Mua Vào",
@@ -31,12 +33,16 @@ const lang = {
     laborPriceDifference: "Chênh Lệch Tiền Công",
     currency: "Đồng",
     weightUnit: "Chỉ",
+    date: "Ngày",
 
     addLaborPrice: "Thêm Tiền Công",
     addTodaysPrice: "Nhập Giá Vàng",
     addNewItem: "Thêm Sản Phẩm",
     close: "Đóng",
 
+    goldAgeInfo: " Thông Tin Tuổi Vàng",
+    oldPrice: "Giá Cũ",
+    todaysPrice: "Giá Hôm Nay",
 }
 
 module.exports = lang;

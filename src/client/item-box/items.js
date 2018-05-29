@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { loadAll, selectItem } from './item-box-actions';
 import { removeItem } from '../crud-item/crud-item-actions';
+import { localize } from '../helper/helper';
 
 import lang from '../resources/lang';
 
 const mapStateToProps = state => ({
     showedItems: state.itemBox.showedItems,
     items: state.itemBox.items,
-    displayAddItem: state.crudItem.displayAddItem
+    displayAddItem: state.crudItem.displayAddItem,
+    goldAges: state.goldAge.types
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,11 +22,6 @@ const mapDispatchToProps = dispatch => ({
 
 
 class ConnectedItems extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSelectClick = this.handleSelectClick.bind(this);
-        this.handleRemoveClick = this.handleRemoveClick.bind(this);
-    }
     componentWillMount() {
         this.props.loadAllItems();
     }
@@ -46,7 +43,7 @@ class ConnectedItems extends React.Component {
                     <span>{ item.code }</span>
 
                     <p>{ lang.goldAge }</p>
-                    <p>{ item.age }</p>
+                    <p>{ this.props.goldAges[item.age] ? this.props.goldAges[item.age].ageName : null }</p>
                     <p></p>
 
                     <p>{ lang.goldWeight }</p>
@@ -54,25 +51,25 @@ class ConnectedItems extends React.Component {
                     <p></p>
 
                     <p>{ lang.buyGoldPrice }</p>
-                    <p>{ item.buyGoldPrice } { lang.currency }</p>
+                    <p>{ localize(item.buyGoldPrice) } { lang.currency }</p>
                     <p></p>
 
                     <p>{ lang.buyLaborPrice }</p>
-                    <p>{ item.buyPrice } { lang.currency }</p>
+                    <p>{ localize(item.buyPrice) } { lang.currency }</p>
                     <p></p>
 
                     <p>{ lang.laborPrice }</p>
-                    <p>{ item.sellLaborPrice } { lang.currency }</p>
+                    <p>{ localize(item.sellLaborPrice) } { lang.currency }</p>
 
                     <button className="edit-button" title={ lang.addLaborPrice }></button>
 
                     <p>{ lang.price }</p>
-                    <p>{ item.sellPrice } { lang.currency }</p>
+                    <p>{ localize(item.sellPrice) } { lang.currency }</p>
                     <p></p>
 
                     <div className="box-footer">
-                        <button className="primary-button" onClick={ this.handleSelectClick } value={ item.code }>{ lang.select }</button>
-                        <button className="button" onClick={ this.handleRemoveClick } value={ item.code }>{ lang.remove }</button>
+                        <button className="primary-button" onClick={ this.handleSelectClick.bind(this) } value={ item.code }>{ lang.select }</button>
+                        <button className="button" onClick={ this.handleRemoveClick.bind(this) } value={ item.code }>{ lang.remove }</button>
                     </div>
                 </li>
             )

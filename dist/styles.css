@@ -3,6 +3,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 .header {
   display: flex;
   align-items: center; }
@@ -88,7 +89,8 @@
   border-top: solid 5px #f1c40f;
   border-radius: 8px;
   display: grid;
-  grid-template-columns: 1fr 100px 50px; }
+  grid-template-columns: 1fr 120px 60px;
+  grid-column-gap: 15px; }
   .items li h3 {
     margin: 0;
     font-size: 17px;
@@ -114,7 +116,8 @@
     .items li .edit-button:hover {
       opacity: 0.6; }
   .items li .box-footer {
-    padding-top: 20px; }
+    padding-top: 20px;
+    grid-column: 1/4; }
 
 .cart {
   height: calc(100vh - 110px);
@@ -822,6 +825,8 @@
     grid-template-columns: 1fr 1fr 50px;
     grid-gap: 15px;
     align-items: center; }
+    .add-item .add-item-content form .box-footer {
+      grid-column: 1/4; }
 
 .add-item div#gold-age {
   display: grid;
@@ -847,6 +852,11 @@
   height: 18px;
   text-align: center; }
 
+.gold-age-window li {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 100px;
+  grid-column-gap: 15px; }
+
 body {
   font-family: "Roboto";
   font-size: 15px;
@@ -857,6 +867,9 @@ body {
 ul {
   padding: 0;
   margin: 0; }
+
+li {
+  list-style: none; }
 
 input {
   padding-left: 20px;
@@ -916,17 +929,17 @@ h2 {
 
 .main {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 65px 1fr;
   grid-gap: 15px; }
   .main .header {
-    grid-column: 1/6;
+    grid-column: 1/11;
     grid-row: 1; }
   .main .item-box {
-    grid-column: 1/4;
+    grid-column: 1/8;
     grid-row: 2; }
   .main .cart {
-    grid-column: 4/6;
+    grid-column: 8/11;
     grid-row: 2; }
 
 .overlay {
@@ -979,4 +992,12 @@ h2 {
 
 .box-body {
   padding: 20px; }
+
+.box-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+  .box-footer button {
+    margin-right: 15px; }
 

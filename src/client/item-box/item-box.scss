@@ -48,7 +48,8 @@
         border-radius: $box-radius;
 
         display: grid;
-        grid-template-columns: 1fr 100px 50px;
+        grid-template-columns: 1fr 120px 60px;
+        grid-column-gap: $box-gap;
 
         h3 {
             margin: 0;
@@ -74,6 +75,7 @@
 
         .box-footer {
             padding-top: $box-padding;
+            grid-column: 1/4;
         }
     }
 }

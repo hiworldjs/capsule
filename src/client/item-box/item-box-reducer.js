@@ -21,7 +21,7 @@ export default function itemBoxReducer(state = initialState, action) {
         case UPDATE_QUERY:
             var result = [];
             for (var item of state.items) {
-                if (isIncluded(action.payload,[item.name, item.code, item.age])) {
+                if (isIncluded(action.payload,item.itemName, item.code, item.age)) {
                     result.push(item);
                 }
             }
@@ -30,8 +30,9 @@ export default function itemBoxReducer(state = initialState, action) {
         case SELECT_ITEM:
             var selectedItem;
             for (var item of state.items) {
-                if (action.payload === item.code) {
+                if (action.payload.toString() === item.code.toString()) {
                     selectedItem = {...item};
+                    break;
                 }
             }
             for (var item of state.selectedItems) {

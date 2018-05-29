@@ -1,0 +1,9 @@
+@import '../settings.scss';
+
+.gold-age-window {
+    li {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) 100px;
+        grid-column-gap: $box-gap;
+    }
+}

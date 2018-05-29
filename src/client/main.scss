@@ -13,6 +13,10 @@ ul {
     margin: 0;
 }
 
+li {
+    list-style: none;
+}
+
 input {
     @include input;
     height: 34px;
@@ -35,22 +39,22 @@ h2 {
 
 .main {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: 65px 1fr;
     grid-gap: $box-gap;
 
     .header {
-        grid-column: 1/6;
+        grid-column: 1/11;
         grid-row: 1;
     }
 
     .item-box {
-        grid-column: 1/4;
+        grid-column: 1/8;
         grid-row: 2;
     }
 
     .cart {
-        grid-column: 4/6;
+        grid-column: 8/11;
         grid-row: 2;
     }
 }
@@ -83,4 +87,15 @@ h2 {
 
 .box-body {
     padding: $box-padding;
+}
+
+.box-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        margin-right: $box-gap;
+    }
 }

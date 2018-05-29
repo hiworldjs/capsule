@@ -14,7 +14,8 @@ import { connect } from 'react-redux';
 import { addItemAndRefresh, toggleAddItem } from './crud-item-actions';
 
 const mapStateToProps = state => ({
-    visibility: state.crudItem.addItemWindowDisplay
+    visibility: state.crudItem.addItemWindowDisplay,
+    goldAgeTypes: state.goldAge.types
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,44 +23,17 @@ const mapDispatchToProps = dispatch => ({
     addItemAndRefresh: data => dispatch(addItemAndRefresh(data))
 })
 
-const goldAgeList = [{
-        code: 0,
-        name: "SJC 1KG",
-        price: 3654000
-    },{
-        code: 1,
-        name: "99.99%",
-        price: 3597000
-    },{
-        code: 2,
-        name: "99%",
-        price: 3516000
-    },{
-        code: 3,
-        name: "75%",
-        price: 2599300
-    },{
-        code: 4,
-        name: "61%",
-        price: 1992700
-    },{
-        code: 5,
-        name: "10K",
-        price: 1389700
-    }]
-
 class ConnectedAddItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedDate: moment(),
-            ageCode: 0
+            ageCode: () => {
+                for (var code in this.props.goldAgeTypes) {
+                    return this.props.goldAgeType[code];
+                }
+            }
         }
-        this.handleCancel = this.handleCancel.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
-        this.handleAgeSelect = this.handleAgeSelect.bind(this);
-
     }
 
     handleAgeSelect(event) {
@@ -87,30 +61,30 @@ class ConnectedAddItem extends React.Component {
     }
 
     render() {
-        const style = this.props.visibility ? {} : {display: 'none'}
         var goldAges = [];
-        for (var age of goldAgeList) {
+        for (var code in this.props.goldAgeTypes) {
             goldAges.push(
-                <div  key={ 'age_' + age.code } className="gold-age-radio">
+                <div key={ code } className="gold-age-radio">
                     <input type="radio"
-                        id={'age_' + age.code}
+                        id={ code }
                         name="age"
-                        value={ age.code }
-                        checked={age.code.toString() === this.state.ageCode.toString()}
-                        onChange={this.handleAgeSelect} />
-                    <label htmlFor={'age_' + age.code}>{ age.name }</label>
+                        value={ code }
+                        checked={code.toString() === this.state.ageCode.toString()}
+                        onChange={this.handleAgeSelect.bind(this)} />
+                    <label htmlFor={ code }>{ this.props.goldAgeTypes[code].ageName }</label>
                 </div>
             )
         }
+        const style = this.props.visibility ? {} : {display: 'none'}
         return (
             <div className="add-item" style={style}>
                 <div className="overlay"></div>
                 <div className="add-item-content">
                     <div className="box-header">
                         <h2> {lang.addNewItem } </h2>
-                        <button className="close-button" onClick={ this.handleCancel } title={ lang.close }></button>
+                        <button className="close-button" onClick={ this.handleCancel.bind(this) } title={ lang.close }></button>
                     </div>
-                    <form onSubmit={ this.handleSubmit }>
+                    <form onSubmit={ this.handleSubmit.bind(this) }>
                         <label htmlFor="item-code">{ lang.itemCode }</label>
                         <input id="item-code" name="code" />
                         <span></span>
@@ -141,11 +115,12 @@ class ConnectedAddItem extends React.Component {
 
                         <label htmlFor="buy-data">{ lang.buyDate }</label>
                         <DatePicker id="buy-date" name="buyDate"
-                            selected={this.state.selectedDate} onChange={this.handleDateChange} />
+                            selected={this.state.selectedDate} onChange={this.handleDateChange.bind(this)} />
                         <span></span>
 
-                        <span></span>
-                        <button type="submit" className="primary-button">{ lang.complete }</button>
+                        <div className="box-footer">
+                            <button type="submit" className="primary-button">{ lang.complete }</button>
+                        </div>
                     </form>
                 </div>
             </div>

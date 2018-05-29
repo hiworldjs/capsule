@@ -13,7 +13,7 @@ const addItemMW = (req, res, next) => {
     var data = req.body;
     var item = {
         ...data,
-        weight: (data.weight - data.stoneWeight).toString(),
+        goldWeight: (data.weight - data.stoneWeight).toString(),
         buyGoldPrice: (data.buyPrice - data.buyLaborPrice).toString(),
         sellLaborPrice: data.buyLaborPrice,
         sellGoldPrice: 'null',

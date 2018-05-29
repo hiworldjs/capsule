@@ -21,7 +21,7 @@ class ConnectedAlert extends React.Component {
         const style = this.props.visibility ? {} : {display: 'none'}
 
         return (
-            <div className="error-alert" style={ style }>
+            <div className="alert-window" style={ style }>
                 <div className="overlay"></div>
                 <div className="pop-up">
                     <div className="box-header">

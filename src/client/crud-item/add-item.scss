@@ -16,6 +16,10 @@
             grid-template-columns: 1fr 1fr 50px;
             grid-gap: $box-gap;
             align-items: center;
+
+            .box-footer {
+                grid-column: 1/4;
+            }
         }
     }
 

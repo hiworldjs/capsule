@@ -3,10 +3,13 @@ const lang = {
 
     search: "Tìm Kiếm",
     select: "Chọn",
+    remove: "Xoá",
     complete: "Hoàn Tất",
     cancel: "Huỷ Thao Tác",
     selected: "Đã Chọn",
     cart: "Sản Phẩm Đã Chọn",
+
+    alert: "Thông Báo",
 
     itemName: "Tên Sản Phẩm",
     itemCode: "Mã Sản Phẩm",

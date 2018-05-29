@@ -13,10 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.246.1",
-    "express": "^4.16.3",
     "body-parser": "^1.18.3",
-    "dynamodb-doc": "^1.0.0",
-    "nodemon": "^1.17.4"
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "axios": "^0.18.0",
@@ -28,6 +26,7 @@
     "css-loader": "^0.28.11",
     "mini-css-extract-plugin": "^0.4.0",
     "moment": "^2.22.1",
+    "nodemon": "^1.17.4",
     "node-sass": "^4.9.0",
     "react": "^16.3.2",
     "react-datepicker": "^1.4.1",

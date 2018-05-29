@@ -1,4 +1,9 @@
 export const LOAD_ALL_ITEMS = 'LOAD_ALL_ITEMS';
 export const UPDATE_QUERY = 'UPDATE_QUERY';
 export const SELECT_ITEM = 'SELECT_ITEM';
+
 export const TOGGLE_ADD_ITEM = 'TOGGLE_ADD_ITEM';
+export const CLOSE_AND_REFRESH = 'CLOSE_AND_REFRESH';
+
+export const TOGGLE_ALERT_WINDOW = 'TOGGLE_ALERT_WINDOW';
+export const DISPLAY_ALERT = 'DISPLAY_ALERT';

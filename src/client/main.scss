@@ -58,3 +58,29 @@ h2 {
 .overlay {
     @include overlay;
 }
+
+.pop-up {
+    @include radius($box-radius);
+    background: $secondary-background-color;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-header {
+    @include title-header;
+    min-width: 200px;
+
+    .close-button {
+        @include svg-button(20px, url(icons/close.svg));
+        position: absolute;
+        right: $box-padding;
+        top: $box-padding;
+    }
+}
+
+.box-body {
+    padding: $box-padding;
+}

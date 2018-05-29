@@ -11,15 +11,15 @@ import './add-item.scss';
 import { transformFormToJSON, randomizeCode, randomizePrice } from '../helper/helper';
 
 import { connect } from 'react-redux';
-import { toggleAddItem } from '../ui/ui-actions';
-import { loadAllItems } from '../item-box/item-box-actions';
+import { addItemAndRefresh, toggleAddItem } from './crud-item-actions';
 
 const mapStateToProps = state => ({
-    visibility: state.ui.displayAddItem
+    visibility: state.crudItem.addItemWindowDisplay
 });
 
 const mapDispatchToProps = dispatch => ({
-    closeAndRefresh: status => dispatch(closeAndRefresh(status, items))
+    toggleAddItem: status => dispatch(toggleAddItem(status)),
+    addItemAndRefresh: data => dispatch(addItemAndRefresh(data))
 })
 
 const goldAgeList = [{
@@ -75,22 +75,10 @@ class ConnectedAddItem extends React.Component {
         var data = {
             ...transformFormToJSON(event.target),
             code: randomizeCode(),
-            price: randomizePrice()
+            sellPrice: randomizePrice()
         };
 
-        axios.post('/addItem', data)
-        .then(res => {
-            axios.get('/getAllItems')
-            .then(res => {
-                this.props.closeAndRefresh(false, res.data);
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        })
-
-
-
+        this.props.addItemAndRefresh(data);
     }
 
     handleCancel(event) {
@@ -118,7 +106,7 @@ class ConnectedAddItem extends React.Component {
             <div className="add-item" style={style}>
                 <div className="overlay"></div>
                 <div className="add-item-content">
-                    <div className="add-item-title">
+                    <div className="box-header">
                         <h2> {lang.addNewItem } </h2>
                         <button className="close-button" onClick={ this.handleCancel } title={ lang.close }></button>
                     </div>

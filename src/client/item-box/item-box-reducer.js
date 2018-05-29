@@ -42,7 +42,7 @@ export default function itemBoxReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedItems: [...state.selectedItems, selectedItem],
-                total: state.total + parseInt(selectedItem.price)
+                total: state.total + parseInt(selectedItem.sellPrice)
             }
 
         default:

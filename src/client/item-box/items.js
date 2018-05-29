@@ -1,35 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { loadAllItems, selectItem } from './item-box-actions';
+import { loadAll, selectItem } from './item-box-actions';
+import { removeItem } from '../crud-item/crud-item-actions';
 
 import lang from '../resources/lang';
 
 const mapStateToProps = state => ({
-    showedItems: state.itemBox.showedItems
+    showedItems: state.itemBox.showedItems,
+    items: state.itemBox.items,
+    displayAddItem: state.crudItem.displayAddItem
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadAllItems: items => dispatch(loadAllItems(items)),
-    selectItem: itemCode => dispatch(selectItem(itemCode))
+    loadAllItems: () => dispatch(loadAll()),
+    selectItem: itemCode => dispatch(selectItem(itemCode)),
+    removeItem: itemCode => dispatch(removeItem(itemCode))
 });
 
 
 class ConnectedItems extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleSelectClick = this.handleSelectClick.bind(this);
+        this.handleRemoveClick = this.handleRemoveClick.bind(this);
     }
     componentWillMount() {
-        axios.get('/getAllItems').then(res => {
-            this.props.loadAllItems(res.data);
-        }).catch(err => {
-            console.log(err);
-        })
+        this.props.loadAllItems();
     }
 
-    handleClick(event) {
+    handleSelectClick(event) {
         this.props.selectItem(event.target.value);
+    }
+
+    handleRemoveClick(event) {
+        this.props.removeItem(event.target.value);
     }
 
     render() {
@@ -49,23 +54,25 @@ class ConnectedItems extends React.Component {
                     <p></p>
 
                     <p>{ lang.buyGoldPrice }</p>
-                    <p>{ item.buyPrice - item.buyLaborPrice }</p>
+                    <p>{ item.buyGoldPrice } { lang.currency }</p>
                     <p></p>
 
-                    <p>{ lang.originalLaborPrice }</p>
-                    <p>{ item.originalLaborPrice } { lang.currency }</p>
+                    <p>{ lang.buyLaborPrice }</p>
+                    <p>{ item.buyPrice } { lang.currency }</p>
                     <p></p>
 
                     <p>{ lang.laborPrice }</p>
-                    <p>{ +item.laborPrice + +item.buyLaborPrice } { lang.currency }</p>
+                    <p>{ item.sellLaborPrice } { lang.currency }</p>
+
                     <button className="edit-button" title={ lang.addLaborPrice }></button>
 
                     <p>{ lang.price }</p>
-                    <p>{ item.price } { lang.currency }</p>
+                    <p>{ item.sellPrice } { lang.currency }</p>
                     <p></p>
 
                     <div className="box-footer">
-                        <button className="primary-button" onClick={ this.handleClick } value={ item.code }>{ lang.select }</button>
+                        <button className="primary-button" onClick={ this.handleSelectClick } value={ item.code }>{ lang.select }</button>
+                        <button className="button" onClick={ this.handleRemoveClick } value={ item.code }>{ lang.remove }</button>
                     </div>
                 </li>
             )

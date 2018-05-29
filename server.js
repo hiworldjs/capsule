@@ -14,9 +14,9 @@ const addItemMW = (req, res, next) => {
     var item = {
         ...data,
         weight: (data.weight - data.stoneWeight).toString(),
-        sellLaborPrice: 'null',
+        buyGoldPrice: (data.buyPrice - data.buyLaborPrice).toString(),
+        sellLaborPrice: data.buyLaborPrice,
         sellGoldPrice: 'null',
-        sellPrice: 'null',
         sellDate: 'null',
         isSold: 'null',
         isRemoved: 'null'
@@ -28,9 +28,7 @@ const addItemMW = (req, res, next) => {
 
 app.post('/addItem', [addItemMW], (req, res) => {
     var data = req.body;
-    var laborPrice = data.buyLaborPrice;
-    var goldWeight = parseFloat(data.weight) - parseFloat(data.stoneWeight);
-    res.send({...data, laborPrice: laborPrice, goldWeight: goldWeight});
+    res.send('Success');
 });
 
 app.get('/getAllItems', (req, res) => {
@@ -39,6 +37,12 @@ app.get('/getAllItems', (req, res) => {
     });
 });
 
+app.post('/removeItem', (req, res) => {
+    itemModel.remove(req.body, data => {
+        res.send(data);
+    })
+})
+/*
 app.get('/createTableGoldAge', (req, res) => {
     res.send(createTable('GOLD_AGE'));
 });
@@ -53,7 +57,7 @@ app.get('/createTableTransaction', (req, res) => {
 
 app.get('/createTableCustomer', (req, res) => {
     res.send(createTable('CUSTOMER'));
-});
+});*/
 
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname + '/src/client/index.html'));

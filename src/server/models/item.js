@@ -1,12 +1,7 @@
 const AWS = require('aws-sdk');
-//AWS.config.update({region: 'eu-central-1'});
 AWS.config.loadFromPath('./config.json');
 
-// Create the DynamoDB service object
-//ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
-//var docClient = new AWS.DynamoDB.DocumentClient({region: 'eu-central-1'});
-var doc = require('dynamodb-doc');
-var docClient = new doc.DynamoDB();
+var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
 const TABLE_NAME = 'ITEM';
 
@@ -24,7 +19,7 @@ const add = item => {
         Item: {...item}
     }
     // Call DynamoDB to add the item to the table
-    docClient.putItem(params, callbackFunction);
+    docClient.put(params, callbackFunction);
 }
 
 const get = (code, resSend) => {
@@ -37,15 +32,32 @@ const get = (code, resSend) => {
     docClient.getItem(params, function(err, data) {
       if (err) {
         console.log("Error", err);
-        resSend("Err...");
+        resSend(err);
       } else {
-        console.log("Success", data.Item);
-        resSend([data.Item]);
+        //console.log("Success", data.Item);
+        resSend(data.Items);
       }
     });
 }
 
-const getAll = (resSend) => {
+const remove = (data, resSendFn) => {
+    var params = {
+        TableName: TABLE_NAME,
+        Key: { code: parseInt(data.code) }
+    }
+
+    docClient.delete(params, function(err, data) {
+      if (err) {
+        console.log("Error", err);
+        resSendFn(err.message);
+      } else {
+        console.log("Success", data.Item);
+        resSendFn(data.Item);
+      }
+    });
+}
+
+const getAll = resSendFn => {
     var params = {
         TableName: TABLE_NAME,
         FilterExpression: '#code between :start and :end',
@@ -60,10 +72,10 @@ const getAll = (resSend) => {
     docClient.scan(params, (err, data) => {
       if (err) {
         console.log("Error", err);
-        resSend("Err...");
+        resSendFn(err);
       } else {
-        console.log("Success", data.Items);
-        resSend(data.Items);
+        //console.log("Success", data.Items);
+        resSendFn(data.Items);
       }
     });
 };
@@ -71,5 +83,6 @@ const getAll = (resSend) => {
 module.exports = {
     add,
     get,
-    getAll
+    getAll,
+    remove
  }

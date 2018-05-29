@@ -1,7 +1,7 @@
 import React from 'react';
 import lang from '../resources/lang';
 import { connect } from 'react-redux';
-import { toggleAddItem } from '../ui/ui-actions';
+import { toggleAddItem } from '../crud-item/crud-item-actions';
 
 const mapDispatchToProps = dispatch => ({
     toggleAddItem: status => dispatch(toggleAddItem(status))

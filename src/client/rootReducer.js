@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import itemBox from './item-box/item-box-reducer';
-import ui from './ui/ui-reducer';
+import crudItem from './crud-item/crud-item-reducer';
+import alert from './alert/alert-reducer';
 
 export default combineReducers({
-    ui, itemBox
+    crudItem, itemBox, alert
 });

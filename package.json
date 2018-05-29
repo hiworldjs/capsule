@@ -2,10 +2,10 @@
   "name": "capsule",
   "version": "1.0.0",
   "description": "A tool for gold sale management",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
+    "start": "nodemon server.js",
     "build": "webpack --mode production",
     "dev": "webpack --mode development"
   },
@@ -14,6 +14,8 @@
   "dependencies": {
     "aws-sdk": "^2.246.1",
     "express": "^4.16.3",
+    "body-parser": "^1.18.3",
+    "dynamodb-doc": "^1.0.0",
     "nodemon": "^1.17.4"
   },
   "devDependencies": {
@@ -23,7 +25,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "body-parser": "^1.18.3",
     "css-loader": "^0.28.11",
     "mini-css-extract-plugin": "^0.4.0",
     "moment": "^2.22.1",
@@ -33,6 +34,7 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",

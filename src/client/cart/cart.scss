@@ -3,7 +3,7 @@
 .cart {
     height: calc(100vh - 110px);
     display: grid;
-    grid-template-rows: 60px 1fr 60px;
+    grid-template-rows: ($heading-bar-height + $box-gap) 1fr 60px;
 
     .cart-title {
         @include title-header;

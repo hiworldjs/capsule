@@ -1,6 +1,6 @@
 import { LOAD_ALL_ITEMS, UPDATE_QUERY, SELECT_ITEM } from '../resources/action-names';
 
-export const loadAllItems = items => ({
+export const loadAllItems = (items) => ({
     type: LOAD_ALL_ITEMS,
     payload: items
 });

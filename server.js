@@ -1,88 +1,62 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const createTable = require('./src/server/models/create-table');
+const itemModel = require('./src/server/models/item');
 app.use(bodyParser.json());
 app.use(express.static('dist'));
-
-const AWS = require('aws-sdk');
-AWS.config.update({region: 'eu-central-1'});
 
 var path = require('path');
 var port = process.env.PORT || 3000;
 
-var randomize = (items) => {
-    for (let i = 0; i < 100; i++) {
-        items.push({
-            code: `E000${i}`,
-            name: "Dây chuyền vàng",
-            age: "99.99%",
-            price: "1884000",
-            goldWeight: "1.95",
-            originalLaborPrice: "300000",
-            laborPrice: "0",
-        });
+const addItemMW = (req, res, next) => {
+    var data = req.body;
+    var item = {
+        ...data,
+        weight: (data.weight - data.stoneWeight).toString(),
+        sellLaborPrice: 'null',
+        sellGoldPrice: 'null',
+        sellPrice: 'null',
+        sellDate: 'null',
+        isSold: 'null',
+        isRemoved: 'null'
     }
-    return items;
+    console.log(item);
+    itemModel.add(item);
+    next();
 }
 
-app.get('/createTable', (req, res) => {
-    // Create the DynamoDB service object
-    ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
+app.post('/addItem', [addItemMW], (req, res) => {
+    var data = req.body;
+    var laborPrice = data.buyLaborPrice;
+    var goldWeight = parseFloat(data.weight) - parseFloat(data.stoneWeight);
+    res.send({...data, laborPrice: laborPrice, goldWeight: goldWeight});
+});
 
-    var params = {
-      AttributeDefinitions: [
-        {
-            AttributeName: 'NAME',
-            AttributeType: 'S'
-        },
-        {
-            AttributeName: 'PRICE',
-            AttributeType: 'N'
-        }
-      ],
-      KeySchema: [
-        {
-            AttributeName: 'ID',
-            KeyType: 'HASH'
-        },
-          {
-              AttributeName: 'CODE',
-              KeyType: 'RANGE'
-          },
-      ],
-      ProvisionedThroughput: {
-        ReadCapacityUnits: 1,
-        WriteCapacityUnits: 1
-      },
-      TableName: 'GOLD_AGE',
-      StreamSpecification: {
-        StreamEnabled: false
-      }
-    };
-
-    // Call DynamoDB to create the table
-    ddb.createTable(params, function(err, data) {
-      if (err) {
-        console.log("Error", err);
-      } else {
-        console.log("Success", data);
-      }
+app.get('/getAllItems', (req, res) => {
+    itemModel.getAll(data => {
+        res.send(data);
     });
+});
+
+app.get('/createTableGoldAge', (req, res) => {
+    res.send(createTable('GOLD_AGE'));
+});
+
+app.get('/createTableItem', (req, res) => {
+    res.send(createTable('ITEM'));
+});
+
+app.get('/createTableTransaction', (req, res) => {
+    res.send(createTable('TRANSACTION'));
+});
+
+app.get('/createTableCustomer', (req, res) => {
+    res.send(createTable('CUSTOMER'));
 });
 
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname + '/src/client/index.html'));
-});
-
-app.get('/getAllItems', (req, res) => {
-    res.send(randomize([]));
-});
-
-app.post('/addItem', (req, res) => {
-    var data = req.body;
-    var laborPrice = data.originalLaborPrice;
-    var goldWeight = parseFloat(data.itemWeight) - parseFloat(data.stoneWeight);
-    res.send({...data, laborPrice: laborPrice, goldWeight: goldWeight});
 });
 
 app.listen(port, () => {

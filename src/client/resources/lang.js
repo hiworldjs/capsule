@@ -9,6 +9,7 @@ const lang = {
     cart: "Sản Phẩm Đã Chọn",
 
     itemName: "Tên Sản Phẩm",
+    itemCode: "Mã Sản Phẩm",
     name: "Tên",
     goldAge: "Tuổi Vàng",
     age: "Tuổi",
@@ -18,11 +19,12 @@ const lang = {
     weight: "Trọng Lượng",
     price: "Giá",
     goldPrice: "Giá Vàng",
+    buyGoldPrice: "Giá Vàng Mua Vào",
 
     buyPrice: "Giá Mua Vào",
     buyDate: "Ngày Mua Vào",
     laborPrice: "Tiền Công",
-    originalLaborPrice: "Tiền Công Mua Vào",
+    buyLaborPrice: "Tiền Công Mua Vào",
     laborPriceDifference: "Chênh Lệch Tiền Công",
     currency: "Đồng",
     weightUnit: "Chỉ",

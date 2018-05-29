@@ -12,13 +12,14 @@ import { transformFormToJSON, randomizeCode, randomizePrice } from '../helper/he
 
 import { connect } from 'react-redux';
 import { toggleAddItem } from '../ui/ui-actions';
+import { loadAllItems } from '../item-box/item-box-actions';
 
 const mapStateToProps = state => ({
     visibility: state.ui.displayAddItem
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleAddItem: status => dispatch(toggleAddItem(status))
+    closeAndRefresh: status => dispatch(closeAndRefresh(status, items))
 })
 
 const goldAgeList = [{
@@ -76,11 +77,19 @@ class ConnectedAddItem extends React.Component {
             code: randomizeCode(),
             price: randomizePrice()
         };
+
         axios.post('/addItem', data)
-        .then(response => {
-            console.log(response.data);
-            this.props.toggleAddItem(false);
+        .then(res => {
+            axios.get('/getAllItems')
+            .then(res => {
+                this.props.closeAndRefresh(false, res.data);
+            });
         })
+        .catch(err => {
+            console.log(err);
+        })
+
+
 
     }
 
@@ -114,8 +123,12 @@ class ConnectedAddItem extends React.Component {
                         <button className="close-button" onClick={ this.handleCancel } title={ lang.close }></button>
                     </div>
                     <form onSubmit={ this.handleSubmit }>
+                        <label htmlFor="item-code">{ lang.itemCode }</label>
+                        <input id="item-code" name="code" />
+                        <span></span>
+
                         <label htmlFor="item-name">{ lang.itemName }</label>
-                        <input id="item-name" name="name" />
+                        <input id="item-name" name="itemName" />
                         <span></span>
 
                         <label htmlFor="gold-age">{ lang.goldAge }</label>
@@ -123,15 +136,15 @@ class ConnectedAddItem extends React.Component {
                         <span></span>
 
                         <label htmlFor="item-weight">{ lang.itemWeight }</label>
-                        <input id="item-weight" name="itemWeight" />
+                        <input id="item-weight" name="weight" />
                         <span>{ lang.weightUnit }</span>
 
                         <label htmlFor="stone-weight">{ lang.stoneWeight }</label>
                         <input id="stone-weight" name="stoneWeight" />
                         <span>{ lang.weightUnit }</span>
 
-                        <label htmlFor="original-labor-price">{ lang.originalLaborPrice }</label>
-                        <input id="original-labor-price" name="originalLaborPrice" />
+                        <label htmlFor="buy-labor-price">{ lang.buyLaborPrice }</label>
+                        <input id="buy-labor-price" name="buyLaborPrice" />
                         <span>{ lang.currency }</span>
 
                         <label htmlFor="buy-price">{ lang.buyPrice }</label>

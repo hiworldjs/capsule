@@ -14,8 +14,8 @@ export default function itemBoxReducer(state = initialState, action) {
         case LOAD_ALL_ITEMS:
             return {
                 ...state,
-                items: [...state.items, ...action.payload],
-                showedItems: [...state.showedItems, ...action.payload]
+                items: [...action.payload],
+                showedItems: [...action.payload]
             };
 
         case UPDATE_QUERY:

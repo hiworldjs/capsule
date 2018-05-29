@@ -10,6 +10,7 @@ body {
 
 ul {
     padding: 0;
+    margin: 0;
 }
 
 input {
@@ -29,7 +30,7 @@ input {
 h2 {
     font-size: $fs-title;
     margin: 0;
-    padding-top: 4px;
+    padding: 0;
 }
 
 .main {

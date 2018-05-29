@@ -1,7 +1,5 @@
 @import '../settings.scss';
 
-$heading-bar-height: 45px;
-
 .item-box {
     display: grid;
     grid-template-rows: $heading-bar-height 1fr;
@@ -49,26 +47,33 @@ $heading-bar-height: 45px;
         border-top: solid 5px $decoration-color;
         border-radius: $box-radius;
 
-        
+        display: grid;
+        grid-template-columns: 1fr 100px 50px;
+
+        h3 {
+            margin: 0;
+            font-size: 17px;
+            margin-bottom: $box-padding;
+        }
+
+        span {
+            text-align: right;
+            color: $primary-color;
+            grid-column: 2/4;
+        }
+
+        p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
 
         .edit-button {
             @include svg-button(20px, url(icons/edit.svg));
             text-align: right;
         }
 
-        .item-title {
-            display: grid;
-            grid-template-columns: 1fr 50px;
-
-            h3 {
-                margin: 0;
-                font-size: 17px;
-            }
-
-            span {
-                text-align: right;
-                color: $primary-color;
-            }
+        .box-footer {
+            padding-top: $box-padding;
         }
     }
 }

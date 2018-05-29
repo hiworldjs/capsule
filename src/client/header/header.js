@@ -6,9 +6,9 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <div class="logo"></div>
+                <div className="logo"></div>
                 <h1>{lang.appName}</h1>
-                <button class="update-button" title={ lang.addTodaysPrice }></button>
+                <button className="update-button" title={ lang.addTodaysPrice }></button>
             </div>
         )
     }

@@ -24,15 +24,18 @@ $overlay-color: #000;
 $window-padding: 15px;
 
 $box-padding: 20px;
-$box-gap: 15px;
+$box-gap: 22px;
 $box-radius: 8px;
 
 $button-padding: 25px;
 $button-radius: 20px;
 
 // Animation
-$transition-speed: .2s;
+$opacity-transition: opacity .1s ease-in;
 $enlarge-scale: 1.2;
+
+// Custom
+$heading-bar-height: 40px;
 
 @mixin box-side-padding {
     padding-left: $box-padding;
@@ -50,7 +53,7 @@ $enlarge-scale: 1.2;
 }
 
 @mixin hover-effect {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 @mixin box {
@@ -85,7 +88,7 @@ $enlarge-scale: 1.2;
     font-size: $fs-medium;
     cursor: pointer;
     background: $secondary-color;
-    transition: opacity $transition-speed ease-in;
+    transition: $opacity-transition;
 
     &:hover {
         @include hover-effect
@@ -101,7 +104,7 @@ $enlarge-scale: 1.2;
     background-size: $size;
     border: none;
     cursor: pointer;
-    transition: opacity $transition-speed ease-in;
+    transition: $opacity-transition;
 
     &:hover {
         @include hover-effect;

@@ -15,10 +15,10 @@
     background-size: 60px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.1s ease-in;
     padding-right: 20px; }
     .header .logo:hover {
-      opacity: 0.8; }
+      opacity: 0.6; }
   .header h1 {
     display: inline-block;
     color: #FFF;
@@ -33,19 +33,19 @@
     background-size: 40px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.1s ease-in;
     position: absolute;
     top: 25px;
     right: 25px; }
     .header .update-button:hover {
-      opacity: 0.8; }
+      opacity: 0.6; }
 
 .item-box {
   display: grid;
-  grid-template-rows: 45px 1fr;
+  grid-template-rows: 40px 1fr;
   grid-template-columns: 1fr 1fr;
-  grid-row-gap: 15px;
-  grid-column-gap: 15px; }
+  grid-row-gap: 22px;
+  grid-column-gap: 22px; }
   .item-box .search-bar {
     grid-column: 1; }
   .item-box .main-board {
@@ -61,22 +61,22 @@
   display: flex;
   flex-direction: row-reverse; }
   .main-board .add-button {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background: url(icons/add.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 45px;
+    background-size: 40px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease-in; }
+    transition: opacity 0.1s ease-in; }
     .main-board .add-button:hover {
-      opacity: 0.8; }
+      opacity: 0.6; }
 
 .items ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 15px; }
+  grid-gap: 22px; }
 
 .items li {
   padding-left: 20px;
@@ -86,7 +86,20 @@
   list-style: none;
   background: #FFF;
   border-top: solid 5px #f1c40f;
-  border-radius: 8px; }
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 100px 50px; }
+  .items li h3 {
+    margin: 0;
+    font-size: 17px;
+    margin-bottom: 20px; }
+  .items li span {
+    text-align: right;
+    color: #2ecc71;
+    grid-column: 2/4; }
+  .items li p {
+    margin-top: 5px;
+    margin-bottom: 5px; }
   .items li .edit-button {
     width: 20px;
     height: 20px;
@@ -96,24 +109,17 @@
     background-size: 20px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.1s ease-in;
     text-align: right; }
     .items li .edit-button:hover {
-      opacity: 0.8; }
-  .items li .item-title {
-    display: grid;
-    grid-template-columns: 1fr 50px; }
-    .items li .item-title h3 {
-      margin: 0;
-      font-size: 17px; }
-    .items li .item-title span {
-      text-align: right;
-      color: #2ecc71; }
+      opacity: 0.6; }
+  .items li .box-footer {
+    padding-top: 20px; }
 
 .cart {
   height: calc(100vh - 110px);
   display: grid;
-  grid-template-rows: 60px 1fr 60px; }
+  grid-template-rows: 62px 1fr 60px; }
   .cart .cart-title {
     padding-top: 20px;
     padding-bottom: 25px;
@@ -811,12 +817,12 @@
     background-size: 20px;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.1s ease-in;
     position: absolute;
     right: 20px;
     top: 20px; }
     .add-item .add-item-title .close-button:hover {
-      opacity: 0.8; }
+      opacity: 0.6; }
 
 .add-item .add-item-content {
   border-radius: 8px;
@@ -838,13 +844,13 @@
     padding-right: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 50px;
-    grid-gap: 15px;
+    grid-gap: 22px;
     align-items: center; }
 
 .add-item div#gold-age {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px; }
+  grid-gap: 22px; }
 
 .add-item .gold-age-radio input {
   display: none; }
@@ -873,7 +879,8 @@ body {
   color: #000; }
 
 ul {
-  padding: 0; }
+  padding: 0;
+  margin: 0; }
 
 input {
   padding-left: 20px;
@@ -900,9 +907,9 @@ input {
   font-size: 15px;
   cursor: pointer;
   background: #af71aa;
-  transition: opacity 0.2s ease-in; }
+  transition: opacity 0.1s ease-in; }
   .button:hover {
-    opacity: 0.8; }
+    opacity: 0.6; }
 
 .primary-button {
   padding-left: 25px;
@@ -921,21 +928,21 @@ input {
   font-size: 15px;
   cursor: pointer;
   background: #af71aa;
-  transition: opacity 0.2s ease-in;
+  transition: opacity 0.1s ease-in;
   background: #2ecc71; }
   .primary-button:hover {
-    opacity: 0.8; }
+    opacity: 0.6; }
 
 h2 {
   font-size: 18px;
   margin: 0;
-  padding-top: 4px; }
+  padding: 0; }
 
 .main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 65px 1fr;
-  grid-gap: 15px; }
+  grid-gap: 22px; }
   .main .header {
     grid-column: 1/6;
     grid-row: 1; }

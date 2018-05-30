@@ -28,11 +28,7 @@ class ConnectedAddItem extends React.Component {
         super(props);
         this.state = {
             selectedDate: moment(),
-            ageCode: () => {
-                for (var code in this.props.goldAgeTypes) {
-                    return this.props.goldAgeType[code];
-                }
-            }
+            ageCode: ''
         }
     }
 
@@ -46,13 +42,18 @@ class ConnectedAddItem extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        var data = {
-            ...transformFormToJSON(event.target),
+        var data = transformFormToJSON(event.target)
+        var sellGoldPrice = (data.weight - data.stoneWeight) * this.props.goldAgeTypes[data.age].price * 1000;
+        var sellLaborPrice = Math.floor(sellGoldPrice/1000 * 0.1) * 1000 + +data.buyLaborPrice;
+        var params = {
+            ...data,
             code: randomizeCode(),
-            sellPrice: randomizePrice()
+            sellGoldPrice: sellGoldPrice,
+            sellLaborPrice: sellLaborPrice,
+            sellPrice: +sellGoldPrice + +sellLaborPrice
         };
-
-        this.props.addItemAndRefresh(data);
+        console.log(params);
+        this.props.addItemAndRefresh(params);
     }
 
     handleCancel(event) {
@@ -84,7 +85,7 @@ class ConnectedAddItem extends React.Component {
                         <h2> {lang.addNewItem } </h2>
                         <button className="close-button" onClick={ this.handleCancel.bind(this) } title={ lang.close }></button>
                     </div>
-                    <form onSubmit={ this.handleSubmit.bind(this) }>
+                    <form className="box-body" onSubmit={ this.handleSubmit.bind(this) }>
                         <label htmlFor="item-code">{ lang.itemCode }</label>
                         <input id="item-code" name="code" />
                         <span></span>

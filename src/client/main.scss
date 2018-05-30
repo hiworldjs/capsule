@@ -64,13 +64,16 @@ h2 {
 }
 
 .pop-up {
-    @include radius($box-radius);
-    background: $secondary-background-color;
-
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.box {
+    @include box-vertical-padding;
+    @include radius($box-radius);
+    background: $secondary-background-color;
 }
 
 .box-header {
@@ -86,7 +89,8 @@ h2 {
 }
 
 .box-body {
-    padding: $box-padding;
+    padding: $box-padding $box-padding 0 $box-padding;
+    background-color: $secondary-background-color;
 }
 
 .box-footer {
@@ -94,6 +98,8 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding: $box-padding $box-padding  0 $box-padding;
+    background-color: $secondary-background-color;
 
     button {
         margin-right: $box-gap;

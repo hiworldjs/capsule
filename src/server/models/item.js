@@ -56,6 +56,28 @@ const remove = (data, resSendFn) => {
     });
 }
 
+const editLaborPrice = (data, resSendFn) => {
+    var params = {
+        TableName: TABLE_NAME,
+        Key: { code: parseInt(data.code) },
+        UpdateExpression: 'set #oldPrice = :newPrice',
+        ExpressionAttributeNames: {'#oldPrice' : 'sellLaborPrice'},
+        ExpressionAttributeValues: {
+            ':newPrice' : data.price,
+        }
+    }
+
+    docClient.delete(params, function(err, data) {
+      if (err) {
+        console.log("Error", err);
+        resSendFn(err.message);
+      } else {
+        console.log("Success", data.Item);
+        resSendFn(data.Item);
+      }
+    });
+}
+
 const getAll = resSendFn => {
     var params = {
         TableName: TABLE_NAME,
@@ -83,5 +105,6 @@ module.exports = {
     add,
     get,
     getAll,
-    remove
+    remove,
+    editLaborPrice
  }

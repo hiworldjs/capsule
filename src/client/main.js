@@ -9,6 +9,7 @@ import Cart from './cart/cart';
 import AddItem from './crud-item/add-item';
 import GoldAge from './gold-age/gold-age';
 import Alert from './alert/alert';
+import EditLaborPrice from './crud-item/edit-labor-price';
 
 import styles from './main.scss';
 
@@ -24,6 +25,7 @@ class App extends React.Component {
                     <Cart />
                     <AddItem />
                     <GoldAge />
+                    <EditLaborPrice />
                     <Alert />
                 </div>
             </Provider>

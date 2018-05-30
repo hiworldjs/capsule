@@ -35,47 +35,81 @@
 .items {
     ul {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         grid-gap: $box-gap;
     }
 
     li {
-        @include box-side-padding;
-        @include box-vertical-padding;
-        list-style: none;
         background: $secondary-background-color;
         border-top: solid 5px $decoration-color;
         border-radius: $box-radius;
 
-        display: grid;
-        grid-template-columns: 1fr 120px 60px;
-        grid-column-gap: $box-gap;
+        .item-info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: $box-gap;
+            grid-row-gap: $item-gap;
+            font-size: 14px;
+            font-style: italic;
+            padding-bottom: $box-gap;
+        }
+
+        .item-record {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: $box-gap;
+            grid-row-gap: $item-gap;
+        }
 
         h3 {
             margin: 0;
             font-size: 17px;
-            margin-bottom: $box-padding;
+            color: $primary-hover-color;
         }
 
         span {
-            text-align: right;
-            color: $primary-color;
-            grid-column: 2/4;
+            color: $primary-hover-color;
+        }
+
+        span.info-details {
+            color: $font-color;
         }
 
         p {
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        p.title {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p.sell-out {
+            color: $font-color;
+        }
+
+        p.sell-price {
+            font-weight: bold;
+        }
+
+        p.buy-in {
+            font-size: $fs-small;
+            color: $secondary-hover-color;
+        }
+
+        p.price-difference {
+            font-size: $fs-small;
+            color: grey;
         }
 
         .edit-button {
             @include svg-button(20px, url(icons/edit.svg));
-            text-align: right;
+            margin-left: $item-gap;
         }
 
         .box-footer {
             padding-top: $box-padding;
-            grid-column: 1/4;
         }
     }
 }

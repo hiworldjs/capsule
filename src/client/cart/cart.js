@@ -22,10 +22,10 @@ class ConnectedCart extends React.Component {
         }
 
         return (
-            <div className="cart">
-                <div className="cart-title"><h2>{ lang.cart }</h2></div>
-                <div className="cart-items">{ cartItems }</div>
-                <div className="total-price"><h2> { lang.total }: { localize(this.props.total) }  { lang.currency }</h2></div>
+            <div className="cart box">
+                <div className="box-header"><h2>{ lang.cart }</h2></div>
+                <div className="box-body">{ cartItems }</div>
+                <div className="box-footer"><h2> { lang.total }: { localize(this.props.total) }  { lang.currency }</h2></div>
             </div>
         )
     }

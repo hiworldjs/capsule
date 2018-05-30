@@ -11,10 +11,11 @@
         transform: translate(-50%, -50%);
 
         form {
-            @include box;
+            @include box-padding;
             display: grid;
-            grid-template-columns: 1fr 1fr 50px;
-            grid-gap: $box-gap;
+            grid-template-columns: 105px 1fr 40px;
+            grid-column-gap: $box-gap;
+            grid-row-gap: $item-gap;
             align-items: center;
 
             .box-footer {
@@ -26,7 +27,7 @@
     div#gold-age {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: $box-gap;
+        grid-gap: $item-gap;
     }
 
     .gold-age-radio {
@@ -44,11 +45,12 @@
         label {
             border-radius: $button-radius;
             display: inline-block;
-            padding: 5px 0;
+            padding: $button-label-padding;
             border: solid 1px $primary-color;
             cursor: pointer;
             white-space: nowrap;
-            width: 100px;
+            font-size: $fs-small;
+            width: 70px;
             height: 18px;
             text-align: center;
         }

@@ -22,6 +22,8 @@ export const isIncluded = (query, ...args) => {
 }
 
 export const localize = (number) => {
+  if (number === null) return number;
+  
   var parts = number.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");

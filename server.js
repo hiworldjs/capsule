@@ -15,8 +15,6 @@ const addItemMW = (req, res, next) => {
         ...data,
         goldWeight: (data.weight - data.stoneWeight).toString(),
         buyGoldPrice: (data.buyPrice - data.buyLaborPrice).toString(),
-        sellLaborPrice: data.buyLaborPrice,
-        sellGoldPrice: 'null',
         sellDate: 'null',
         isSold: 'null',
         isRemoved: 'null'
@@ -39,6 +37,12 @@ app.get('/getAllItems', (req, res) => {
 
 app.post('/removeItem', (req, res) => {
     itemModel.remove(req.body, data => {
+        res.send(data);
+    })
+})
+
+app.post('/editLaborPrice', (req, res) => {
+    itemModel.editLaborPrice(req.body, data => {
         res.send(data);
     })
 })

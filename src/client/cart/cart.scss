@@ -1,17 +1,11 @@
 @import '../settings.scss';
 
 .cart {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 140px);
     display: grid;
-    grid-template-rows: ($heading-bar-height + $box-gap) 1fr 60px;
+    grid-template-rows: ($heading-bar-height + $box-gap) 1fr 40px;
 
-    .cart-title {
-        @include title-header;
-    }
-
-    .cart-items {
-        @include box;
-        background: $secondary-background-color;
+    .box-body {
         overflow-y: scroll;
 
         li {
@@ -26,16 +20,12 @@
         }
     }
 
-    .total-price {
-        @include box;
-        background: $secondary-background-color;
+    .box-footer {
         border-top: solid 1px $primary-color;
-        border-bottom-left-radius: $box-radius;
-        border-bottom-right-radius: $box-radius;
 
         h2 {
             font-size: 18px;
-            padding-top: 6px;
+            padding-top: 0;
             margin: 0;
         }
     }

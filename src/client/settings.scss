@@ -2,6 +2,7 @@
 
 $font-main: 'Roboto';
 $fs-medium: 15px;
+$fs-small: 13px;
 $fs-title: 18px;
 
 $font-color: #000;
@@ -22,13 +23,14 @@ $header-color: #2ecc71;
 $overlay-color: #000;
 
 $window-padding: 15px;
-
+$item-gap: 7.5px;
 $box-padding: 20px;
 $box-gap: 15px;
 $box-radius: 8px;
 
 $button-padding: 25px;
 $button-radius: 20px;
+$button-label-padding: 5px;
 
 // Animation
 $opacity-transition: opacity .1s ease-in;
@@ -43,8 +45,7 @@ $heading-bar-height: 40px;
 }
 
 @mixin box-vertical-padding {
-    padding-top: $box-padding;
-    padding-bottom: $box-padding + 5px;
+    padding-bottom: $box-padding;
 }
 
 @mixin button-side-padding {
@@ -56,7 +57,7 @@ $heading-bar-height: 40px;
     opacity: 0.6;
 }
 
-@mixin box {
+@mixin box-padding {
     @include box-vertical-padding;
     @include box-side-padding;
 }
@@ -122,10 +123,13 @@ $heading-bar-height: 40px;
 }
 
 @mixin title-header {
-    @include box-vertical-padding;
+    padding-top: $box-padding;
+    padding-bottom: $box-padding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: $header-color;
     color: $secondary-font-color;
-    text-align: center;
     border-top-left-radius: $box-radius;
     border-top-right-radius: $box-radius;
 }

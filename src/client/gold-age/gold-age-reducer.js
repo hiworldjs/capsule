@@ -2,34 +2,28 @@
 const initialState = {
     goldAgeDisplay: false,
     types: {
-        'GA_SJC': {
-            ageName: 'Vàng SJC',
-            price: 3654,
+        'VANG_TA': {
+            ageName: 'Vàng Ta',
+            sellPrice: 3620,
+            buyPrice: 3520,
             date: '05/29/2018'
         },
-        'GA_9999': {
-            ageName: 'Vàng 9999',
-            price: 3516,
+        'VANG_TAY': {
+            ageName: 'Vàng Tây',
+            sellPrice: 2500,
+            buyPrice: 2000,
             date: '05/29/2018'
         },
-        'GA_99': {
-            ageName: 'Vàng 99',
-            price: 3354,
+        'VANG_ITALY': {
+            ageName: 'Italy 750',
+            sellPrice: 3900,
+            buyPrice: 2500,
             date: '05/29/2018'
         },
-        'GA_75': {
-            ageName: 'Vàng 75',
-            price: 2540,
-            date: '05/29/2018'
-        },
-        'GA_61': {
-            ageName: 'Vàng 61',
-            price: 1992,
-            date: '05/29/2018'
-        },
-        'GA_10k': {
-            ageName: 'Vàng 10K',
-            price: 1389,
+        'BAC': {
+            ageName: 'Bạc',
+            sellPrice: 60,
+            buyPrice: 40,
             date: '05/29/2018'
         }
     }

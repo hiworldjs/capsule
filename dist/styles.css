@@ -800,34 +800,16 @@
   cursor: default;
 }
 
-.add-item .add-item-content {
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  -khtml-border-radius: 8px;
-  border-radius: 8px;
-  background: #FFF;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); }
-  .add-item .add-item-content form {
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: grid;
-    grid-template-columns: 105px 1fr 40px;
-    grid-column-gap: 15px;
-    grid-row-gap: 7.5px;
-    align-items: center; }
-    .add-item .add-item-content form .box-footer {
-      grid-column: 1/4; }
+.add-item .box-body {
+  display: grid;
+  grid-template-columns: 105px 1fr 40px;
+  grid-column-gap: 15px;
+  grid-row-gap: 7.5px;
+  align-items: center; }
 
 .add-item div#gold-age {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 7.5px; }
 
 .add-item .gold-age-radio input {
@@ -841,12 +823,12 @@
 .add-item .gold-age-radio label {
   border-radius: 20px;
   display: inline-block;
-  padding: 5px;
+  padding: 8px 5px 5px 5px;
   border: solid 1px #2ecc71;
   cursor: pointer;
   white-space: nowrap;
   font-size: 13px;
-  width: 70px;
+  width: 89px;
   height: 18px;
   text-align: center; }
 
@@ -927,16 +909,16 @@ h2 {
 
 .main {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 65px 1fr;
   grid-gap: 15px; }
   .main .header {
-    grid-column: 1/11;
+    grid-column: 1/-1;
     grid-row: 1; }
   .main .item-box {
     grid-column: 1/8;
     grid-row: 2; }
   .main .cart {
+    dislay: none;
     grid-column: 8/11;
     grid-row: 2; }
 

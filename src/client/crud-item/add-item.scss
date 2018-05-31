@@ -1,32 +1,17 @@
 @import '../settings.scss';
 
 .add-item {
-    .add-item-content {
-        @include radius($box-radius);
-        background: $secondary-background-color;
-
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-
-        form {
-            @include box-padding;
-            display: grid;
-            grid-template-columns: 105px 1fr 40px;
-            grid-column-gap: $box-gap;
-            grid-row-gap: $item-gap;
-            align-items: center;
-
-            .box-footer {
-                grid-column: 1/4;
-            }
-        }
+    .box-body {
+        display: grid;
+        grid-template-columns: 105px 1fr 40px;
+        grid-column-gap: $box-gap;
+        grid-row-gap: $item-gap;
+        align-items: center;
     }
 
     div#gold-age {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-gap: $item-gap;
     }
 
@@ -45,12 +30,12 @@
         label {
             border-radius: $button-radius;
             display: inline-block;
-            padding: $button-label-padding;
+            padding: ($button-label-padding + 3) $button-label-padding $button-label-padding $button-label-padding;            
             border: solid 1px $primary-color;
             cursor: pointer;
             white-space: nowrap;
             font-size: $fs-small;
-            width: 70px;
+            width: 89px;
             height: 18px;
             text-align: center;
         }

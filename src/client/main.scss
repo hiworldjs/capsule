@@ -39,12 +39,12 @@ h2 {
 
 .main {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    //grid-template-columns: 600px 1fr;
     grid-template-rows: 65px 1fr;
     grid-gap: $box-gap;
 
     .header {
-        grid-column: 1/11;
+        grid-column: 1/-1;
         grid-row: 1;
     }
 
@@ -54,6 +54,7 @@ h2 {
     }
 
     .cart {
+        dislay: none;
         grid-column: 8/11;
         grid-row: 2;
     }

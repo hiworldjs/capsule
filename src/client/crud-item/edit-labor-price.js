@@ -5,13 +5,12 @@ import { toggleLaborPriceWindow, submitNewLaborPrice } from './crud-item-actions
 
 const mapStateToProps = state => ({
     visibility: state.crudItem.editLaborPriceWindowDisplay,
-    itemCode: state.crudItem.onEditItemCode,
-    laborPrice: state.crudItem.onEditLaborPrice
+    item: state.crudItem.onEditItem
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleLaborPriceWindow: status => dispatch(toggleLaborPriceWindow(false, null)),
-    submitNewLaborPrice: (code, price) => dispatch(submitNewLaborPrice(code, price))
+    submitNewLaborPrice: (code, sellLaborPrice, sellPrice) => dispatch(submitNewLaborPrice(code, sellLaborPrice, sellPrice))
 })
 
 class ConnectedEditLaborPrice extends React.Component {
@@ -23,18 +22,27 @@ class ConnectedEditLaborPrice extends React.Component {
     }
     handleCloseClick(event) {
         this.props.toggleLaborPriceWindow(false);
+        this.setState({ laborPrice: '' });
     }
 
     handleChange(event) {
         this.setState({ laborPrice: event.target.value });
     }
 
+    handleKeyPress(target) {
+        if (target.charCode === 13) {
+            this.handleSubmit();
+        }
+    }
+
     handleSubmit(event) {
         if (this.state.laborPrice != this.props.laborPrice) {
-            this.props.submitNewLaborPrice(this.props.itemCode, this.state.laborPrice);
+            var newSellPrice = +this.props.item.sellPrice + +this.state.laborPrice - this.props.item.sellLaborPrice;
+            this.props.submitNewLaborPrice(this.props.item.code, this.state.laborPrice, newSellPrice);
         } else {
             this.props.toggleLaborPriceWindow(false);
         }
+        this.setState({ laborPrice: '' });
     }
 
     render() {
@@ -49,10 +57,13 @@ class ConnectedEditLaborPrice extends React.Component {
                     <button onClick={ this.handleCloseClick.bind(this) } className="close-button" title={ lang.close }></button>
                     </div>
                     <div className="box-body">
-                        <input type="text" value={ this.state.laborPrice } onChange={ this.handleChange.bind(this) } placeholder={ this.props.laborPrice }/>
+                        <input type="text" value={ this.state.laborPrice }
+                        onChange={ this.handleChange.bind(this) }
+                        onKeyPress={ this.handleKeyPress.bind(this) }
+                        placeholder={ this.props.item ? this.props.item.sellLaborPrice : '' }/>
                     </div>
                     <div className="box-footer">
-                        <button className="primary-button" onClick={ this.handleSubmit.bind(this) }>{ lang.complete }</button>
+                        <button type="submit" className="primary-button" onClick={ this.handleSubmit.bind(this) }>{ lang.complete }</button>
                     </div>
                 </div>
             </div>

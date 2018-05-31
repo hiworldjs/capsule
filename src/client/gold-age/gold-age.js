@@ -16,7 +16,7 @@ class ConnectedGoldAge extends React.Component {
                 <li key={ code }>
                     <span>{ code }</span>
                     <span>{ this.props.goldAges[code].ageName }</span>
-                    <span>{ this.props.goldAges[code].price }</span>
+                    <span>{ this.props.goldAges[code].sellPrice }</span>
                     <span>{ this.props.goldAges[code].date }</span>
                     <input type="text" />
                 </li>

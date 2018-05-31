@@ -12,9 +12,7 @@ var port = process.env.PORT || 3000;
 const addItemMW = (req, res, next) => {
     var data = req.body;
     var item = {
-        ...data,
-        goldWeight: (data.weight - data.stoneWeight).toString(),
-        buyGoldPrice: (data.buyPrice - data.buyLaborPrice).toString(),
+        ...data,        
         sellDate: 'null',
         isSold: 'null',
         isRemoved: 'null'

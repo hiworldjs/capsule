@@ -9,21 +9,18 @@ export const toggleAddItem = status => ({
     payload: status
 })
 
-export const addItemAndRefresh = input => ((dispatch, getState) => {
+export const addItemAndRefresh = input => dispatch => (
     axios.post('/addItem', input)
     .then(() => {
         axios.get('/getAllItems')
         .then(res => {
             dispatch(loadAll(res.data))
         })
-        .then(() => {
-            dispatch(toggleAddItem(false));
-        })
     })
     .catch(err => {
         return dispatch(alert(err.message));
     })
-});
+);
 
 export const removeItem = code => (dispatch => {
     axios.post('/removeItem', {code: code}).then(res => {
@@ -33,16 +30,24 @@ export const removeItem = code => (dispatch => {
     })
 })
 
-export const toggleLaborPriceWindow = (status, code, laborPrice) => ({
+export const toggleLaborPriceWindow = (status, item) => ({
     type: TOGGLE_EDIT_LABOR_PRICE,
-    payload: { status: status, code: code, laborPrice: laborPrice }
+    payload: { status: status, item: item }
 })
 
-export const submitNewLaborPrice = (code, price) => (dispatch => {
-    axios.post('/editLaborPrice', {code: code, price: price})
+export const submitNewLaborPrice = (code, sellLaborPrice, sellPrice) => (dispatch => {    
+    axios.post('/editLaborPrice', {
+        code: code,
+        sellLaborPrice: sellLaborPrice,
+        sellPrice: sellPrice
+    })
     .then(res => {
         return dispatch(loadAll());
-    }).catch(err => {
+    })
+    .then(() => {
+        return dispatch(toggleLaborPriceWindow(false, null));
+    })
+    .catch(err => {
         return dispatch(alert(err.message));
     })
 })

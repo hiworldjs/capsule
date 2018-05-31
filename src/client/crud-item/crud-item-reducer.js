@@ -3,8 +3,7 @@ import { TOGGLE_ADD_ITEM, TOGGLE_EDIT_LABOR_PRICE } from '../resources/action-na
 const initialState = {
     addItemWindowDisplay: false,
     editLaborPriceWindowDisplay: false,
-    onEditItemCode: null,
-    onEditLaborPrice: 0
+    onEditItem: null
 }
 
 export default function crudItemReducer(state = initialState, action) {
@@ -14,8 +13,7 @@ export default function crudItemReducer(state = initialState, action) {
         case TOGGLE_EDIT_LABOR_PRICE:
             return { ...state,
                 editLaborPriceWindowDisplay: action.payload.status,
-                onEditItemCode: action.payload.code,
-                onEditLaborPrice: action.payload.laborPrice
+                onEditItem: action.payload.item,
             }
         default:
             return state;

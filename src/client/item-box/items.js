@@ -10,7 +10,7 @@ import lang from '../resources/lang';
 const mapStateToProps = state => ({
     showedItems: state.itemBox.showedItems,
     items: state.itemBox.items,
-    displayAddItem: state.crudItem.displayAddItem,
+    addItemWindowDisplay: state.crudItem.addItemWindowDisplay,
     goldAges: state.goldAge.types
 });
 
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
     loadAllItems: () => dispatch(loadAll()),
     selectItem: itemCode => dispatch(selectItem(itemCode)),
     removeItem: itemCode => dispatch(removeItem(itemCode)),
-    editLaborPrice: (itemCode, laborPrice) => dispatch(toggleLaborPriceWindow(true, itemCode, laborPrice))
+    editLaborPrice: item => dispatch(toggleLaborPriceWindow(true, item))
 });
 
 
@@ -35,14 +35,17 @@ class ConnectedItems extends React.Component {
         this.props.removeItem(event.target.value);
     }
 
+    // componentWillUpdate() {
+    //     console.log(this.props.items, this.props.addItemWindowDisplay);
+    // }
+
     handleEditLaborPrice(event) {
         for (var item of this.props.items) {
             if (event.target.value == item.code) {
-                this.props.editLaborPrice(item.code, item.sellLaborPrice);
+                this.props.editLaborPrice(item);
                 return;
             }
         }
-
     }
 
     render() {
@@ -56,7 +59,7 @@ class ConnectedItems extends React.Component {
                             <span>{ item.code }</span>
                             <span className="info-details">{ item.goldWeight } { lang.weightUnit }</span>
                             <span className="info-details">
-                                { this.props.goldAges[item.age] ? this.props.goldAges[item.age].ageName : '????' } ({ this.props.goldAges[item.age] ? this.props.goldAges[item.age].price : '????' })
+                                { this.props.goldAges[item.age] ? this.props.goldAges[item.age].ageName : '????' } ({ lang.price }: { this.props.goldAges[item.age] ? this.props.goldAges[item.age].sellPrice : '????' })
                             </span>
                         </div>
 

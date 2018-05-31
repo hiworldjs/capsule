@@ -23,7 +23,7 @@ class ConnectedAlert extends React.Component {
         return (
             <div className="alert-window" style={ style }>
                 <div className="overlay"></div>
-                <div className="pop-up">
+                <div className="pop-up box">
                     <div className="box-header">
                     <span>{ lang.alert }</span>
                     <button onClick={ this.handleCloseClick.bind(this) } className="close-button" title={ lang.close }></button>

@@ -60,20 +60,24 @@ const editLaborPrice = (data, resSendFn) => {
     var params = {
         TableName: TABLE_NAME,
         Key: { code: parseInt(data.code) },
-        UpdateExpression: 'set #oldPrice = :newPrice',
-        ExpressionAttributeNames: {'#oldPrice' : 'sellLaborPrice'},
+        UpdateExpression: `SET
+            sellLaborPrice = :sellLaborPrice,
+            sellPrice = :sellPrice
+            `,
         ExpressionAttributeValues: {
-            ':newPrice' : data.price,
-        }
+            ':sellLaborPrice': data.sellLaborPrice,
+            ':sellPrice': data.sellPrice
+        },
+        ReturnValues: 'UPDATED_NEW'
     }
 
-    docClient.delete(params, function(err, data) {
+    docClient.update(params, function(err, data) {
       if (err) {
         console.log("Error", err);
         resSendFn(err.message);
       } else {
-        console.log("Success", data.Item);
-        resSendFn(data.Item);
+        console.log("Success", data);
+        resSendFn(data.Attributes);
       }
     });
 }

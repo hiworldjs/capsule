@@ -1,115 +1,71 @@
 @import '../settings.scss';
 
-.item-box {
-    display: grid;
-    grid-template-rows: $heading-bar-height 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-row-gap: $box-gap;
-    grid-column-gap: $box-gap;
-
-    .search-bar {
-        grid-column: 1;
-    }
-    .main-board {
-        grid-column: 2;
-    }
-    .items {
-        grid-column: 1/3;
-    }
-}
-
-.search-bar {
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.main-board {
-    display: flex;
-    flex-direction: row-reverse;
-
-    .add-button {
-        @include svg-button($heading-bar-height, url(icons/add.svg));
-    }
-}
-
-.items {
+.item-box .items {
     ul {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-gap: $box-gap;
     }
 
     li {
         background: $secondary-background-color;
-        border-top: solid 5px $decoration-color;
+        //border-top: solid 5px $decoration-color;
         border-radius: $box-radius;
 
-        .item-info {
+        .box-body {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-column-gap: $box-gap;
             grid-row-gap: $item-gap;
-            font-size: 14px;
-            font-style: italic;
-            padding-bottom: $box-gap;
-        }
 
-        .item-record {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-column-gap: $box-gap;
-            grid-row-gap: $item-gap;
-        }
+            .item-title, .item-subtitle {
+                text-align: center;
+                grid-column: 1/-1;
+            }
 
-        h3 {
-            margin: 0;
-            font-size: 17px;
-            color: $primary-hover-color;
-        }
+            .sell-price {
+                text-align: center;
+                grid-column: 1/-1;
+                font-weight: bold;
+                color: $primary-hover-color;
+            }
 
-        span {
-            color: $primary-hover-color;
-        }
+            .edit-button {
+                @include svg-button(20px, url(icons/edit.svg));
+                margin-left: $item-gap;
+            }
 
-        span.info-details {
-            color: $font-color;
-        }
+            .details {
+                display: grid;
+                grid-template-columns: 1fr auto auto;
+                grid-column-gap: $item-gap;
 
-        p {
-            margin: 0;
-            padding: 0;
-        }
+                .title {
+                    text-align: right;
+                }
 
-        p.title {
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+                .price {
+                    text-align: right;
+                }
 
-        p.sell-out {
-            color: $font-color;
-        }
+                .buy-in {
+                    color: $trivial-color;
+                }
 
-        p.sell-price {
-            font-weight: bold;
-        }
-
-        p.buy-in {
-            font-size: $fs-small;
-            color: $secondary-hover-color;
-        }
-
-        p.price-difference {
-            font-size: $fs-small;
-            color: grey;
-        }
-
-        .edit-button {
-            @include svg-button(20px, url(icons/edit.svg));
-            margin-left: $item-gap;
+            }
         }
 
         .box-footer {
-            padding-top: $box-padding;
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            align-items: flex-end;
+
+            .remove-button {
+                @include svg-button(20px, url(icons/delete.svg));
+            }
+
+            div {
+                display: flex;
+                justify-content: flex-end;
+            }
         }
     }
 }

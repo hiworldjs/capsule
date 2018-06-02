@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/Open_Sans/OpenSans-Regular.ttf');
+}
 
-$font-main: 'Roboto';
-$fs-medium: 15px;
+$font-main: "Open Sans";
+$fs-medium: 14px;
 $fs-small: 13px;
 $fs-title: 18px;
 
 $font-color: #000;
-$secondary-font-color: #FFF;
+$secondary-font-color: #fff;
 
 $background-color: #4844A3;
-$secondary-background-color: #FFF;
+$secondary-background-color: #fff;
 
 $primary-color: #2ecc71;
 $primary-hover-color: #27ae60;
@@ -18,7 +21,11 @@ $secondary-color: #af71aa;
 $secondary-hover-color: #9c6497;
 
 $decoration-color: #f1c40f;
-$header-color: #2ecc71;
+$trivial-color: #7f8c8d;
+
+$header-color: #33d075;
+$header-font-color: #fff;
+$header-height: 19px;
 
 $overlay-color: #000;
 
@@ -48,25 +55,9 @@ $heading-bar-height: 40px;
     padding-bottom: $box-padding;
 }
 
-@mixin button-side-padding {
-    padding-left: $button-padding;
-    padding-right: $button-padding;
-}
-
-@mixin hover-effect {
-    opacity: 0.6;
-}
-
 @mixin box-padding {
     @include box-vertical-padding;
     @include box-side-padding;
-}
-
-@mixin input {
-    @include box-side-padding;
-    border-radius: $button-radius;
-    font-size: $fs-medium;
-    border: solid 1px $primary-color;
 }
 
 @mixin radius($radius) {
@@ -79,9 +70,31 @@ $heading-bar-height: 40px;
     border-radius: $radius;
 }
 
+@mixin input {
+    @include box-side-padding;
+    border-radius: $button-radius;
+    font-size: $fs-medium;
+    border: solid 1px $primary-color;
+}
+
+@mixin button-side-padding {
+    padding-left: $button-padding;
+    padding-right: $button-padding;
+}
+
+@mixin hover-effect {
+    opacity: 0.6;
+}
+
+@mixin disabled-effect {
+    background-color: $trivial-color;
+    cursor: default;
+}
+
 @mixin button($type:false, $height: 37px) {
     @include button-side-padding;
     @include radius($button-radius);
+    font-family: $font-main;
     height: $height;
     color: $secondary-font-color;
     border: none;
@@ -93,6 +106,10 @@ $heading-bar-height: 40px;
 
     &:hover {
         @include hover-effect
+    }
+
+    &:disabled {
+        @include disabled-effect;
     }
 }
 
@@ -120,16 +137,4 @@ $heading-bar-height: 40px;
     right: 0;
     background-color: $overlay-color;
     opacity: 0.7;
-}
-
-@mixin title-header {
-    padding-top: $box-padding;
-    padding-bottom: $box-padding;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $header-color;
-    color: $secondary-font-color;
-    border-top-left-radius: $box-radius;
-    border-top-right-radius: $box-radius;
 }

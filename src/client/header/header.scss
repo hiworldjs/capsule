@@ -1,26 +1,41 @@
 @import '../settings.scss';
 
 .header {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $box-gap;
 
     .logo {
-        @include svg-button(60px, url(icons/logo.svg));
-        padding-right: $box-padding;
+        @include svg-button($heading-bar-height, url(icons/logo.svg));
+        width: auto;
+        padding-left: $heading-bar-height + $box-gap;
+        background-position: left;
 
+        h1 {
+            color: $secondary-font-color;
+            font-size: 22px;
+            line-height: 40px;
+        }
     }
 
-    h1 {
-        display: inline-block;
-        color: $secondary-font-color;
-        margin: 0;
-        font-size: 22px;
+    .search-bar {
+        display: grid;
     }
 
-    .update-button {
-        @include svg-button(40px, url(icons/bank.svg));
-        position: absolute;
-        top: $box-padding + 5px;
-        right: $box-padding + 5px;
+    .main-board {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            margin-left: $box-gap;
+        }
+
+        .add-button {
+            @include svg-button($heading-bar-height, url(icons/add.svg));
+        }
+
+        .update-button {
+            @include svg-button($heading-bar-height, url(icons/bank.svg));
+        }
     }
 }

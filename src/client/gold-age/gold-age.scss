@@ -3,7 +3,17 @@
 .gold-age-window {
     li {
         display: grid;
-        grid-template-columns: repeat(4, 1fr) 100px;
-        grid-column-gap: $box-gap;
+        grid-template-columns: auto 76px 76px;
+        grid-gap: $box-gap;
+        padding-bottom: $box-gap;
+
+        span.title-col {
+            line-height: 37px;
+        }
+    }
+
+    li.title-row {
+        padding-bottom: $box-padding;
+        text-align: center;
     }
 }

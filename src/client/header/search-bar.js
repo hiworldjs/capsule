@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { updateQuery } from './item-box-actions';
+import { updateQuery } from '../item-box/item-box-actions';
 
 import lang from '../resources/lang';
 

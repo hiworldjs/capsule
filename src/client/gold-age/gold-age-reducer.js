@@ -1,3 +1,4 @@
+import { TOGGLE_GOLD_AGE_WINDOW } from '../resources/action-names';
 
 const initialState = {
     goldAgeDisplay: false,
@@ -30,5 +31,10 @@ const initialState = {
 }
 
 export default function goldAgeReducer(state = initialState, action) {
-    return state;
+    switch(action.type) {
+        case TOGGLE_GOLD_AGE_WINDOW:
+            return { ...state, goldAgeDisplay: action.payload };
+        default:
+            return state;
+    }
 }

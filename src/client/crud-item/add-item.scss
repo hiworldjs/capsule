@@ -3,7 +3,7 @@
 .add-item {
     .box-body {
         display: grid;
-        grid-template-columns: 105px 1fr 40px;
+        grid-template-columns: 105px 1fr 30px;
         grid-column-gap: $box-gap;
         grid-row-gap: $item-gap;
         align-items: center;
@@ -30,7 +30,7 @@
         label {
             border-radius: $button-radius;
             display: inline-block;
-            padding: ($button-label-padding + 3) $button-label-padding $button-label-padding $button-label-padding;            
+            padding: ($button-label-padding + 3) $button-label-padding $button-label-padding $button-label-padding;
             border: solid 1px $primary-color;
             cursor: pointer;
             white-space: nowrap;

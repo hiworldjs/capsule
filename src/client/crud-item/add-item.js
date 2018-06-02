@@ -27,9 +27,17 @@ class ConnectedAddItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDate: moment(),
+            selectedDate: '',
             ageCode: ''
         }
+    }
+
+    componentWillMount() {
+        var now = moment();
+        //var now2 = now.format('DD/MM/YYYY');
+        console.log(now);
+        console.log(typeof(now));
+        this.setState({selectedDate: now});
     }
 
     handleAgeSelect(event) {
@@ -89,7 +97,7 @@ class ConnectedAddItem extends React.Component {
                 <div className="overlay"></div>
                 <div className="pop-up box">
                     <div className="box-header">
-                        <h2> {lang.addNewItem } </h2>
+                        { lang.addNewItem }
                         <button className="close-button" onClick={ this.handleCancel.bind(this) } title={ lang.close }></button>
                     </div>
                     <form onSubmit={ this.handleSubmit.bind(this) }>
@@ -121,10 +129,12 @@ class ConnectedAddItem extends React.Component {
                             <label htmlFor="buy-labor-price">{ lang.buyLaborPrice }</label>
                             <input id="buy-labor-price" name="buyLaborPrice" />
                             <span>{ lang.currency }</span>
-
+                            
                             <label htmlFor="buy-data">{ lang.buyDate }</label>
                             <DatePicker id="buy-date" name="buyDate"
-                                selected={this.state.selectedDate} onChange={this.handleDateChange.bind(this)} />
+                                dateFormat={ lang.dateFormat }
+                                selected={this.state.selectedDate}
+                                onChange={this.handleDateChange.bind(this)} />
                             <span></span>
                         </div>
                         <div className="box-footer">

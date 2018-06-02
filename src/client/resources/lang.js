@@ -1,7 +1,8 @@
 const lang = {
-    appName: "Quản Lý Tiệm Vàng",
+    appName: "Bán Vàng Online",
     currency: "VND",
     weightUnit: "Chỉ",
+    dateFormat: "DD/MM/YYYY",
 
     search: "Tìm Kiếm",
     select: "Chọn",
@@ -25,12 +26,13 @@ const lang = {
     weight: "Trọng Lượng",
     price: "Giá",
     buyIn: "Mua Vào",
-    buyGoldPrice: "Giá Vàng Mua Vào",
+    buyGoldPrice: "Giá N.L Gốc",
     buyLaborPrice: "Tiền Công Gốc",
     buyPrice: "Giá Mua",
     buyDate: "Ngày Mua",
     sellOut: "Bán Ra",
-    goldPrice: "Giá Vàng",
+    sell: "Bán",
+    goldPrice: "Giá N.L",
     laborPrice: "Tiền Công",
     sellPrice: "Giá Bán",
     sellDate: "Ngày Bán",
@@ -38,6 +40,7 @@ const lang = {
     laborPriceDifference: "Chênh Lệch Tiền Công",
     date: "Ngày",
     total: "Tổng",
+    estimatedProfit: "Lãi Ước Tính",
 
     editLaborPrice: "Thay Đổi Tiền Công",
     addTodaysPrice: "Nhập Giá Vàng",

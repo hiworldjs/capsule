@@ -1,4 +1,4 @@
-import { LOAD_ALL_ITEMS, UPDATE_QUERY, SELECT_ITEM } from '../resources/action-names';
+import { LOAD_ALL_ITEMS, UPDATE_QUERY, SELECT_ITEM, DESELECT_ITEM } from '../resources/action-names';
 import axios from 'axios';
 import { alert } from '../alert/alert-actions';
 
@@ -25,3 +25,8 @@ export const selectItem = itemCode => ({
     type: SELECT_ITEM,
     payload: itemCode
 });
+
+export const deselectItem = itemCode => ({
+    type: DESELECT_ITEM,
+    payload: itemCode
+})

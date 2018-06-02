@@ -1,9 +1,10 @@
 @import '../settings.scss';
 
 .cart {
-    height: calc(100vh - 140px);
+    grid-row: 1;
+
     display: grid;
-    grid-template-rows: ($heading-bar-height + $box-gap) 1fr 40px;
+    grid-template-rows: ($header-height + $item-gap * 2) auto auto;
 
     .box-body {
         overflow-y: scroll;
@@ -11,22 +12,34 @@
         li {
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-bottom: $box-padding;
+            grid-template-columns: 1fr 75px 28px;
+            grid-gap: $item-gap;
 
-            h4, p {
-                margin: 0;
+            .price {
+                text-align: right;
+            }
+
+            .remove-cart-button {
+                @include svg-button(14px, url(icons/remove.svg));
+                height: auto;
+                width: 28px;
+                background-position: right;
+            }
+        }
+
+        li.total {
+            font-weight: bold;
+            grid-template-rows: 1px 1fr;
+
+            hr {
+                grid-column: 1/4;
+                width: 100%;
+                color: $trivial-color;
             }
         }
     }
 
     .box-footer {
-        border-top: solid 1px $primary-color;
-
-        h2 {
-            font-size: 18px;
-            padding-top: 0;
-            margin: 0;
-        }
+        justify-content: flex-end;
     }
 }

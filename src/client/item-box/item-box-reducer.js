@@ -1,4 +1,4 @@
-import { LOAD_ALL_ITEMS, UPDATE_QUERY, SELECT_ITEM } from '../resources/action-names';
+import { LOAD_ALL_ITEMS, UPDATE_QUERY, SELECT_ITEM, DESELECT_ITEM } from '../resources/action-names';
 import { isIncluded } from '../helper/helper.js';
 
 const initialState = {
@@ -43,9 +43,17 @@ export default function itemBoxReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedItems: [...state.selectedItems, selectedItem],
-                total: state.total + parseInt(selectedItem.sellPrice)
+                total: parseInt(state.total) + parseInt(selectedItem.sellPrice)
             }
-
+        case DESELECT_ITEM:
+            var selectedItem = state.selectedItems.find(item => item.code == action.payload);
+            console.log(state.total);
+            console.log(selectedItem.sellPrice);
+            return {
+                ...state,
+                selectedItems: state.selectedItems.filter(item => item.code != action.payload),
+                total: parseInt(state.total) - parseInt(selectedItem.sellPrice)
+            }
         default:
             return state;
 
